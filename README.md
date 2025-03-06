@@ -1,6 +1,7 @@
 # CS 326 Course Recommendation System
 
 ### [Project Title & Team Number].
+####CS Course Recommendation App
 
 ### Project Description:
  (copied/revised from your presentation slides).
