@@ -1,8 +1,6 @@
 # CS 326 Course Recommendation System
 
-### [Project Title & Team Number].
-CS Course Recommendation App
-Team 6
+## CS Course Recommendation App - Team 6
 
 ### Project Description:
 The user will input the courses that they have already taken, and potentially any interests they have, and the app will recommend future courses that they might be interested in.
