@@ -1,4 +1,4 @@
-# 326_Course_Recommendation_System
+# CS 326 Course Recommendation System
 
 ### [Project Title & Team Number].
 
