@@ -5,10 +5,13 @@ CS Course Recommendation App
 Team 6
 
 ### Project Description:
- (copied/revised from your presentation slides).
+The user will input the courses that they have already taken, and potentially any interests they have, and the app will recommend future courses that they might be interested in.
+Include prerequisite/eligibility info.
+CS Major course progress map (based on courses taken and planning to take, also a factor when suggesting courses).
  
 ### Problem: 
 Clearly define the problem your application aims to solve.
+
 
 ### Solution: 
 Describe how your application addresses the problem.
