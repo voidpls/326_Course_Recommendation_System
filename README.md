@@ -2,6 +2,7 @@
 
 ### [Project Title & Team Number].
 CS Course Recommendation App
+Team 6
 
 ### Project Description:
  (copied/revised from your presentation slides).
