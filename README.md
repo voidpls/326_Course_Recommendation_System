@@ -22,6 +22,9 @@ Students can enter courses taken, interests, and career goals.
 Course Recommendation:
 The system recommends appropriate courses based on inputs and provides course details (e.g., prerequisites, credits, schedule, etc.).
 
+Course Schedule Builder:
+Students can select courses and generate schedules, the system will indicate time conflicts and provide suggestions for adjustments.
+
 ### Why This Project? 
 Explain the real-world impact and user pain points.
 
