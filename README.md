@@ -19,6 +19,9 @@ Describe how your application addresses the problem.
 User Input:
 Students can enter courses taken, interests, and career goals.
 
+Course Recommendation:
+The system recommends appropriate courses based on inputs and provides course details (e.g., prerequisites, credits, schedule, etc.).
+
 ### Why This Project? 
 Explain the real-world impact and user pain points.
 
