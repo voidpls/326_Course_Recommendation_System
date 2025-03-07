@@ -29,9 +29,6 @@ Students can select courses and generate schedules, the system will indicate tim
 Explain the real-world impact and user pain points.
 
 ### Team Member List:
-Name
-Role (see "Team Role & Commit Responsibilities" below)
-At least three Issues they plan to work on
-Shrey Bahadur
-    - Role: Note taker
-    - Issues: Note taker, User log in data, Course review UI
+##### Shrey Bahadur
+- Role: Note taker
+- Issues: Note taker, User log in data, Course review UI
