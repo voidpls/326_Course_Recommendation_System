@@ -13,7 +13,7 @@ Without clear guidance, students may miss beneficial courses, take courses out o
 
 
 ### Solution: 
-Describe how your application addresses the problem.
+We are building an app that will recommend users what courses to take based off of the prerequisites they have satisfied and their interests, saving users lots of time and hastle. This app will also help the user understand the requirements to graduate and where they are on the path to graduation.
 
 ### Key Features: 
 User Input:
@@ -26,7 +26,7 @@ Course Schedule Builder:
 Students can select courses and generate schedules, the system will indicate time conflicts and provide suggestions for adjustments.
 
 ### Why This Project? 
-Explain the real-world impact and user pain points.
+We chose this app as we are all students who have at one point or another had to plan out our course schedule. We have spent lots of time looking through the course catalog and seeing what prerequisites are required for the courses we want to take. Having this app at our disposal would’ve been very helpful and hopefully we can help future students by building this app. 
 
 ### Team Member List:
 Shrey Bahadur
