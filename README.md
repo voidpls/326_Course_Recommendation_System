@@ -29,6 +29,6 @@ Students can select courses and generate schedules, the system will indicate tim
 Explain the real-world impact and user pain points.
 
 ### Team Member List:
-##### Shrey Bahadur
+Shrey Bahadur
 - Role: Note taker
 - Issues: Note taker, User log in data, Course review UI
