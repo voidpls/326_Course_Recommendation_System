@@ -16,7 +16,8 @@ Without clear guidance, students may miss beneficial courses, take courses out o
 Describe how your application addresses the problem.
 
 ### Key Features: 
-Outline essential functionalities of your application.
+User Input:
+Students can enter courses taken, interests, and career goals.
 
 ### Why This Project? 
 Explain the real-world impact and user pain points.
