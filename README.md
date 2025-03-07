@@ -33,3 +33,4 @@ Name
 Role (see "Team Role & Commit Responsibilities" below)
 At least three Issues they plan to work on
 Shrey Bahadur
+    - Role: Note taker
