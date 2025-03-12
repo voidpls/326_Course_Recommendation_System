@@ -32,3 +32,7 @@ We chose this app as we are all students who have at one point or another had to
 Shrey Bahadur
 - Role: Note taker
 - Issues: Note taker, User log in data, Course review UI
+
+Lexie King
+- Role: Project Manager
+- Issues: General UI Design, Past Course Storage, Course Details, Course Recommendation Home Page
