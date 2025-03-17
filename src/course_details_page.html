@@ -4,91 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Course Details</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    main {
-      max-width: 800px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      margin-top: 0;
-    }
-    .course-info {
-      margin-bottom: 15px;
-    }
-    .back-button {
-      display: inline-block;
-      padding: 10px 15px;
-      background-color: #333;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-bottom: 15px;
-    }
-    .back-button:hover {
-      background-color: #555;
-    }
-    .search-container {
-      display: inline;
-      margin-left: 40px;
-      margin-bottom: 20px;
-      text-align: right;
-    }
-    #searchBox {
-      width: 80%;
-      max-width: 400px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-  </style>
+  <link rel="stylesheet" href="course_details_page.css">
 </head>
 <body>
 
 <header>
-  <h1>Course Details</h1>
+  <h1>Course Recommender</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href=course_details_page.html?id=1" class="active">Course Details Page</a></li>
+      <li><a href="profile.html">My Profile</a></li>
+      <li><a href="recommendations.html">Recommendations</a></li>
+      <li><a href="settings.html">Settings</a></li>
+
+    </ul>
+  </nav>
 </header>
 
 <main>
-  <a href="index.html" class="back-button">← Back to Home Page</a>
-
-  <!-- Search Box -->
-  <div class="search-container">
-    <input type="text" id="searchBox" placeholder="Search for a course...">
+  <!-- Sidebar for search -->
+  <div class="sidebar">
+    <h2>Search Courses</h2>
+    <input type="text" id="searchBox" placeholder="Search for a course..." onkeyup="searchCourse()">
   </div>
 
-  <h2 id="course-title">Course Title</h2>
-  <div class="course-info">
-    <strong>Description:</strong>
-    <p id="course-description">Course description goes here.</p>
-  </div>
-  <div class="course-info">
-    <strong>Prerequisites:</strong>
-    <p id="course-prerequisites">List of prerequisites.</p>
-  </div>
-  <div class="course-info">
-    <strong>Schedule:</strong>
-    <p id="course-schedule">Class times and locations.</p>
+  <!-- Main content area for course details -->
+  <div class="content">
+    <h2 id="course-title">Course Title</h2>
+    <div class="course-info">
+      <strong>Description:</strong>
+      <p id="course-description">Course description goes here.</p>
+    </div>
+    <div class="course-info">
+      <strong>Prerequisites:</strong>
+      <p id="course-prerequisites">List of prerequisites.</p>
+    </div>
+    <div class="course-info">
+      <strong>Schedule:</strong>
+      <p id="course-schedule">Class times and locations.</p>
+    </div>
   </div>
 </main>
 
-<script src="course_details_page.js"></script>
+<footer>
+  <p>&copy; 2025 Course Recommender. All rights reserved.</p>
+</footer>
 
+<script src="course_details_page.js"></script>
 
 </body>
 </html>
