@@ -42,6 +42,20 @@
     .back-button:hover {
       background-color: #555;
     }
+    .search-container {
+      display: inline;
+      margin-left: 40px;
+      margin-bottom: 20px;
+      text-align: right;
+    }
+    #searchBox {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
@@ -52,6 +66,12 @@
 
 <main>
   <a href="index.html" class="back-button">← Back to Home Page</a>
+
+  <!-- Search Box -->
+  <div class="search-container">
+    <input type="text" id="searchBox" placeholder="Search for a course...">
+  </div>
+
   <h2 id="course-title">Course Title</h2>
   <div class="course-info">
     <strong>Description:</strong>
