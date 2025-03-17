@@ -87,31 +87,8 @@
   </div>
 </main>
 
-<script>
-  // Simulating course data retrieval from URL query params
-  const urlParams = new URLSearchParams(window.location.search);
-  const courseId = urlParams.get('id');
+<script src="course_details_page.js"></script>
 
-  // EX, will be fetched from a backend
-  const courses = {
-    "1": {
-      title: "Introduction to Machine Learning",
-      description: "This course covers fundamental machine learning algorithms...",
-      prerequisites: "Linear Algebra, Probability, and Python.",
-      schedule: "MWF 10:00 AM - 11:30 AM, Room 101"
-    }
-  };
-
-  // Load course details dynamically
-  if (courseId && courses[courseId]) {
-    document.getElementById("course-title").textContent = courses[courseId].title;
-    document.getElementById("course-description").textContent = courses[courseId].description;
-    document.getElementById("course-prerequisites").textContent = courses[courseId].prerequisites;
-    document.getElementById("course-schedule").textContent = courses[courseId].schedule;
-  } else {
-    document.querySelector("main").innerHTML = "<p>Course not found.</p>";
-  }
-</script>
 
 </body>
 </html>
