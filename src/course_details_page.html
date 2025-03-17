@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .course-info {
+      margin-bottom: 15px;
+    }
+    .back-button {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #333;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .back-button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Course Details</h1>
+</header>
+
+<main>
+  <a href="index.html" class="back-button">← Back to Home Page</a>
+  <h2 id="course-title">Course Title</h2>
+  <div class="course-info">
+    <strong>Description:</strong>
+    <p id="course-description">Course description goes here.</p>
+  </div>
+  <div class="course-info">
+    <strong>Prerequisites:</strong>
+    <p id="course-prerequisites">List of prerequisites.</p>
+  </div>
+  <div class="course-info">
+    <strong>Schedule:</strong>
+    <p id="course-schedule">Class times and locations.</p>
+  </div>
+</main>
+
+<script>
+  // Simulating course data retrieval from URL query params
+  const urlParams = new URLSearchParams(window.location.search);
+  const courseId = urlParams.get('id');
+
+  // EX, will be fetched from a backend
+  const courses = {
+    "1": {
+      title: "Introduction to Machine Learning",
+      description: "This course covers fundamental machine learning algorithms...",
+      prerequisites: "Linear Algebra, Probability, and Python.",
+      schedule: "MWF 10:00 AM - 11:30 AM, Room 101"
+    }
+  };
+
+  // Load course details dynamically
+  if (courseId && courses[courseId]) {
+    document.getElementById("course-title").textContent = courses[courseId].title;
+    document.getElementById("course-description").textContent = courses[courseId].description;
+    document.getElementById("course-prerequisites").textContent = courses[courseId].prerequisites;
+    document.getElementById("course-schedule").textContent = courses[courseId].schedule;
+  } else {
+    document.querySelector("main").innerHTML = "<p>Course not found.</p>";
+  }
+</script>
+
+</body>
+</html>
