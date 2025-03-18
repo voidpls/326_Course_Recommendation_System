@@ -1,0 +1,248 @@
+[
+  {
+    "course_code": "CICS 160",
+    "title": "Object-Oriented Programming",
+    "instructors": [
+      "Jaime Davila",
+      "Cole Reilly"
+    ],
+    "description": "This course will expose students to programming practices beyond the introductory level, concentrating on Object Oriented Programming techniques and an introduction to Data Structures. Students will also study and analyze the complexity of both the algorithms presented in class and of the algorithms they develop.",
+    "prerequisites": [
+      "CICS 110 or COMPSCI 121 with a grade of C or better"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "CICS 210",
+    "title": "Data Structures",
+    "instructors": [
+      "Mordecai Golin",
+      "Timothy Richards"
+    ],
+    "description": "An introduction to the design, analysis, and implementation of data structures. Topics include binary search trees, balanced trees, priority queues, hash tables, graphs, and more. Students will learn to analyze the performance of algorithms using Big-O notation.",
+    "prerequisites": [
+      "CICS 160 with a grade of C or better"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "CICS 256",
+    "title": "Make: A Hands-on Introduction to Physical Computing",
+    "instructors": [
+      "Stefan Krastanov"
+    ],
+    "description": "This course provides a hands-on introduction to physical computing with Arduinos, sensing and responding to the physical world, and rapid prototyping. A required lab section is included.",
+    "prerequisites": [
+      "CICS 210 or COMPSCI 187 with a grade of C or better"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "CICS 305",
+    "title": "Social Issues in Computing",
+    "instructors": [
+      "Erin Butler",
+      "Elizabeth Gunther",
+      "Siobhan Mei",
+      "Justin Obara",
+      "Matthew Ross",
+      "Christina Sutcliffe"
+    ],
+    "description": "A discussion-based course on computing issues in modern society, exploring topics such as ethics, privacy, and the impact of technology.",
+    "prerequisites": [
+      "ENGLWRIT 112 with a grade of C or better",
+      "COMPSCI 220",
+      "COMPSCI 230",
+      "COMPSCI 240"
+    ],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 119",
+    "title": "Introduction to Programming",
+    "instructors": [
+      "Devdhar Patel"
+    ],
+    "description": "An introduction to computer programming using Python, covering data types, program structures, functions, debugging, and object-oriented programming.",
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 198C",
+    "title": "Practicum - Introduction to the C Programming Language",
+    "instructors": [
+      "Meng-Chieh Chiu",
+      "Timothy Richards"
+    ],
+    "description": "Covers basic C data types, functions, pointers, and memory management. Students learn to compile and run C programs.",
+    "prerequisites": [
+      "CICS 160 or COMPSCI 121 with a grade of B or better"
+    ],
+    "credits": 1
+  },
+  {
+    "course_code": "COMPSCI 220",
+    "title": "Programming Methodology",
+    "instructors": [
+      "Marius Minea"
+    ],
+    "description": "Covers design strategies and patterns, functional and object-oriented approaches, program verification, and testing.",
+    "prerequisites": [
+      "CICS 210 with a grade of C or better"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "COMPSCI 230",
+    "title": "Computer Systems Principles",
+    "instructors": [
+      "Phuthipong Bovornkeeratiroj",
+      "Meng-Chieh Chiu"
+    ],
+    "description": "A study of high-performance, scalable systems, C data representation, assembly languages, operating system services, and synchronization.",
+    "prerequisites": [
+      "CICS 210 with a grade of C or better",
+      "COMPSCI 198C"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "COMPSCI 311",
+    "title": "Introduction to Algorithms",
+    "instructors": [
+      "Marius Minea",
+      "Daniel Sheldon"
+    ],
+    "description": "Covers algorithm design techniques such as divide and conquer, greedy methods, dynamic programming, and network flow.",
+    "prerequisites": [
+      "CICS 210",
+      "COMPSCI 250 or MATH 455 with a grade of C or better"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "COMPSCI 320",
+    "title": "Introduction to Software Engineering",
+    "instructors": [
+      "Gordon Anderson",
+      "Jaime Davila",
+      "Matthew Rattigan"
+    ],
+    "description": "Focuses on team-based software engineering projects covering design, abstraction, testing, and project management.",
+    "prerequisites": [
+      "COMPSCI 220 with a grade of C or better"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "COMPSCI 326",
+    "title": "Web Programming",
+    "instructors": [
+      "Meng-Chieh Chiu"
+    ],
+    "description": "Introduction to client-side and server-side web technologies, including JavaScript, AJAX, web security, and web frameworks.",
+    "prerequisites": [
+      "COMPSCI 220 or COMPSCI 230 with a grade of C or better"
+    ],
+    "credits": 4
+  },
+  {
+    "course_code": "COMPSCI 360",
+    "title": "Introduction to Computer and Network Security",
+    "instructors": [
+      "Eugene Bagdasarian"
+    ],
+    "description": "Covers cryptography, privacy, network security, security vulnerabilities, and countermeasures.",
+    "prerequisites": [
+      "COMPSCI 230 with a grade of C or better"
+    ],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 367",
+    "title": "Reverse Engineering and Understanding Exploit Development",
+    "instructors": ["Lurene Grenier"],
+    "description": "Covers practical skills in reverse engineering and binary exploitation, including vulnerability analysis and mitigation techniques.",
+    "prerequisites": ["COMPSCI 230 (or E&C-ENG 322 or E&C-ENG 373) with a grade of C or better, or permission of instructor"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 370",
+    "title": "Introduction to Computer Vision",
+    "instructors": ["Subhransu Maji"],
+    "description": "Covers algorithms for image processing, object recognition, and machine learning applications in vision.",
+    "prerequisites": ["COMPSCI 240 or 383 with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 373",
+    "title": "Introduction to Computer Graphics",
+    "instructors": ["Rui Wang"],
+    "description": "Introduces 2D and 3D computer graphics, including modeling, rendering, shading, and ray tracing.",
+    "prerequisites": ["CICS 210 (or COMPSCI 187) and MATH 235 (or INFO 150 or COMPSCI 240) with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 377",
+    "title": "Operating Systems",
+    "instructors": ["Phuthipong Bovornkeeratiroj"],
+    "description": "Examines the design and implementation of modern operating systems, including processes, memory management, and file systems.",
+    "prerequisites": ["COMPSCI 230 with a grade of C or better"],
+    "credits": 4
+  },
+  {
+    "course_code": "COMPSCI 383",
+    "title": "Artificial Intelligence",
+    "instructors": ["William McNichols"],
+    "description": "Provides an introduction to AI topics, with a focus on machine learning, search algorithms, and neural networks.",
+    "prerequisites": ["CICS 210 and COMPSCI 240 (or STATISTC 315), all with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 389",
+    "title": "Introduction to Machine Learning",
+    "instructors": ["Philip Thomas"],
+    "description": "An introduction to machine learning algorithms including supervised learning, reinforcement learning, and deep learning concepts.",
+    "prerequisites": ["COMPSCI 220 (or COMPSCI 230), COMPSCI 240 (or STATISTC 315/515), and MATH 233, all with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 390B",
+    "title": "Harnessing Data Science for Societal Good",
+    "instructors": ["Abhidip Bhattacharyya"],
+    "description": "Project-based course on data science applications in societal problems like sustainability and healthcare.",
+    "prerequisites": ["COMPSCI 230 and COMPSCI 240 (or STATISTC 315/515) with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 403",
+    "title": "Introduction to Robotics: Perception, Mechanics, Dynamics, and Control",
+    "instructors": ["Donghyun Kim"],
+    "description": "Covers robotic motion, kinematics, dynamics, and feedback control with programming in Python.",
+    "prerequisites": ["MATH 235 and COMPSCI 220 (or COMPSCI 230) with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 420",
+    "title": "Software Entrepreneurship",
+    "instructors": ["Matthew Rattigan"],
+    "description": "Focuses on developing software from proof-of-concept to marketable products with societal benefits.",
+    "prerequisites": ["COMPSCI 320 (or COMPSCI 326) with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 426",
+    "title": "Scalable Web Systems",
+    "instructors": ["Timothy Richards"],
+    "description": "Covers large-scale web applications, software architecture, scalability, and distributed systems.",
+    "prerequisites": ["COMPSCI 320 or COMPSCI 326 with a grade of C or better"],
+    "credits": 3
+  },
+  {
+    "course_code": "COMPSCI 429",
+    "title": "Software Engineering Project Management",
+    "instructors": ["Gordon Anderson", "Jaime Davila", "Matthew Rattigan"],
+    "description": "Provides practical experience in managing software development projects for teams.",
+    "prerequisites": ["COMPSCI 320 with a grade of B or better, or instructor permission"],
+    "credits": 3
+  }
+]
