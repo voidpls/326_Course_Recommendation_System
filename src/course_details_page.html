@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course Details</title>
+  <link rel="stylesheet" href="course_details_page.css">
+</head>
+<body>
+
+<header>
+  <h1>Course Recommender</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li>Course Details Page</li>
+      <li><a href="profile.html">My Profile</a></li>
+      <li><a href="recommendations.html">Recommendations</a></li>
+      <li><a href="settings.html">Settings</a></li>
+
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <!-- Sidebar for search -->
+  <div class="sidebar">
+    <h2>Search Courses</h2>
+    <input type="text" id="searchBox" placeholder="Search for a course..." onkeyup="searchCourse()">
+  </div>
+
+  <!-- Main content area for course details -->
+  <div class="content">
+    <h2 id="course-title">Course Title</h2>
+    <div class="course-info">
+      <strong>Description:</strong>
+      <p id="course-description">Course description goes here.</p>
+    </div>
+    <div class="course-info">
+      <strong>Prerequisites:</strong>
+      <p id="course-prerequisites">List of prerequisites.</p>
+    </div>
+    <div class="course-info">
+      <strong>Schedule:</strong>
+      <p id="course-schedule">Class times and locations.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 Course Recommender. All rights reserved.</p>
+</footer>
+
+<script src="course_details_page.js"></script>
+
+</body>
+</html>

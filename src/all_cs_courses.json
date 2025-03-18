@@ -1,0 +1,734 @@
+[
+    {
+        "Course Code":"CICS 108",
+        "Title":"Foundations of Data Science",
+        "Credits":4,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"CICS 109",
+        "Title":"Introduction to Data Analysis in R",
+        "Credits":1,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"CICS 110",
+        "Title":"Foundations of Programming",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"CICS 127",
+        "Title":"Introduction to Public Interest Technology",
+        "Credits":4,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"CICS 160",
+        "Title":"Object-Oriented Programming",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"CICS 191FY1",
+        "Title":"CICS First Year Seminar",
+        "Credits":1,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"CICS 208",
+        "Title":"Defending Democracy in a Digital World",
+        "Credits":4,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"CICS 210",
+        "Title":"Data Structures",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"CICS 237",
+        "Title":"Introduction to Research in the Discipline",
+        "Credits":2,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"CICS 256",
+        "Title":"Make: A Hands-on Introduction to Physical Computing",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"CICS 305",
+        "Title":"Social Issues in Computing",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"CICS 396A",
+        "Title":"Independent Study - Directed Research Group",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"CICS 580",
+        "Title":"Introduction to Numerical Computing with Python",
+        "Credits":1,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 119",
+        "Title":"Introduction to Programming",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 198C",
+        "Title":"Practicum - Introduction to the C Programming Language",
+        "Credits":1,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 220",
+        "Title":"Programming Methodology",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 230",
+        "Title":"Computer Systems Principles",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 240",
+        "Title":"Reasoning Under Uncertainty",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 250",
+        "Title":"Introduction to Computation",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 311",
+        "Title":"Introduction to Algorithms",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 320",
+        "Title":"Introduction to Software Engineering",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 325",
+        "Title":"Introduction to Human Computer Interaction",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 326",
+        "Title":"Web Programming",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 328",
+        "Title":"Mobile Health Sensing and Analytics",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 335",
+        "Title":"Inside the Box: How Computers Work",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 345",
+        "Title":"Practice and Applications of Data Management",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 348",
+        "Title":"Principles of Data Science",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 360",
+        "Title":"Introduction to Computer and Network Security",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 377",
+        "Title":"Operating Systems",
+        "Credits":4,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 383",
+        "Title":"Artificial Intelligence",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 389",
+        "Title":"Introduction to Machine Learning",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 390B",
+        "Title":"Harnessing Data Science for Societal Good",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 403",
+        "Title":"Introduction to Robotics: Perception, Mechanics, Dynamics, and Control",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 410",
+        "Title":"Compiler Techniques",
+        "Credits":3,
+        "Frequency":"Even Fall"
+    },
+    {
+        "Course Code":"COMPSCI 420",
+        "Title":"Software Entrepreneurship",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 426",
+        "Title":"Scalable Web Systems",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 429",
+        "Title":"Software Engineering Project Management",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 445",
+        "Title":"Information Systems",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 446",
+        "Title":"Search Engines",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 453",
+        "Title":"Computer Networks",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 461",
+        "Title":"Secure Distributed Systems",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 466",
+        "Title":"Applied Cryptography",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 485",
+        "Title":"Applications of Natural Language Processing",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 490Q",
+        "Title":"Quantum Information Science",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 491G",
+        "Title":"Seminar - Computer Networking Lab",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 501",
+        "Title":"Formal Language Theory",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 508",
+        "Title":"Ethical Considerations in Computing",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 513",
+        "Title":"Logic in Computer Science",
+        "Credits":3,
+        "Frequency":"Odd Fall"
+    },
+    {
+        "Course Code":"COMPSCI 514",
+        "Title":"Algorithms for Data Science",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 515",
+        "Title":"Algorithms, Game Theory and Fairness",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 520",
+        "Title":"Theory and Practice of Software Engineering",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 524",
+        "Title":"Health Informatics and Data Science",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 528",
+        "Title":"Mobile and Ubiquitous Computing",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 532",
+        "Title":"Systems for Data Science",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 535",
+        "Title":"Computer Architecture",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 546",
+        "Title":"Applied Information Retrieval",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 550",
+        "Title":"Introduction to Simulation",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 560",
+        "Title":"Introduction to Computer and Network Security",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 561",
+        "Title":"System Defense and Test",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 563",
+        "Title":"Internet Law and Policy",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 564",
+        "Title":"Cyber Effects: Reverse Engineering, Exploit Analysis, and Capability Development",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 565",
+        "Title":"Advanced Digital Forensic Systems",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 571",
+        "Title":"Data Visualization and Exploration",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 574",
+        "Title":"Intelligent Visual Computing",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 575",
+        "Title":"Combinatorics and Graph Theory",
+        "Credits":3,
+        "Frequency":"Even Fall"
+    },
+    {
+        "Course Code":"COMPSCI 576",
+        "Title":"Game Programming",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 578",
+        "Title":"Distributed Computing and Systems",
+        "Credits":3,
+        "Frequency":"Odd Fall"
+    },
+    {
+        "Course Code":"COMPSCI 589",
+        "Title":"Machine Learning",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 590AB",
+        "Title":"Quantum Cryptography",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 590AE",
+        "Title":"Mobile and Wireless Networks",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 590AF",
+        "Title":"Reverse Engineering and Understanding Exploit Development",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 590L",
+        "Title":"Making Predictions",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 590Q",
+        "Title":"Quantum Information Systems",
+        "Credits":3,
+        "Frequency":"Even Fall"
+    },
+    {
+        "Course Code":"COMPSCI 590X",
+        "Title":"Decarbonization and Data Science",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 591NR",
+        "Title":"Seminar - Neural Networks: Neuroscience and Engineering",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 602",
+        "Title":"Research Methods in Empirical Computer Science",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 603",
+        "Title":"Robotics",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 610",
+        "Title":"Compiler Techniques",
+        "Credits":3,
+        "Frequency":"Even Fall"
+    },
+    {
+        "Course Code":"COMPSCI 611",
+        "Title":"Advanced Algorithms",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 613",
+        "Title":"Advanced Logic in Computer Science",
+        "Credits":3,
+        "Frequency":"Odd Fall"
+    },
+    {
+        "Course Code":"COMPSCI 614",
+        "Title":"Randomized Algorithms with Applications to Data Science",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 621",
+        "Title":"Advanced Software Engineering: Analysis and Evaluation",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 625",
+        "Title":"Advanced Methods in Human Computer Interaction",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 627",
+        "Title":"Fixing Social Media",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 630",
+        "Title":"Systems",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 635",
+        "Title":"Modern Computer Architecture",
+        "Credits":3,
+        "Frequency":"Odd Fall"
+    },
+    {
+        "Course Code":"COMPSCI 645",
+        "Title":"Database Design and Implementation",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 646",
+        "Title":"Information Retrieval",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 648",
+        "Title":"Quantum Information Systems",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 650",
+        "Title":"Applied Information Theory",
+        "Credits":3,
+        "Frequency":"Even Spring"
+    },
+    {
+        "Course Code":"COMPSCI 651",
+        "Title":"Optimization in Computer Science",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 653",
+        "Title":"Computer Networking",
+        "Credits":3,
+        "Frequency":"Even Fall"
+    },
+    {
+        "Course Code":"COMPSCI 654",
+        "Title":"Advanced Wireless Networking and Sensing in IoT",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 655",
+        "Title":"Performance Evaluation",
+        "Credits":3,
+        "Frequency":"Even Fall"
+    },
+    {
+        "Course Code":"COMPSCI 660",
+        "Title":"Advanced Information Assurance",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 661",
+        "Title":"Secure Distributed Systems",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 666",
+        "Title":"Theory and Practice of Cryptography",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 670",
+        "Title":"Computer Vision",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 674",
+        "Title":"Intelligent Visual Computing",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 677",
+        "Title":"Distributed and Operating Systems",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 682",
+        "Title":"Neural Networks: A Modern Introduction",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 683",
+        "Title":"Artificial Intelligence",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 685",
+        "Title":"Advanced Natural Language Processing",
+        "Credits":3,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 687",
+        "Title":"Reinforcement Learning",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 688",
+        "Title":"Probabilistic Graphical Models",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 689",
+        "Title":"Machine Learning",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 690AA",
+        "Title":"Approximation Algorithms and Combinatorial Optimization",
+        "Credits":3,
+        "Frequency":"Even Spring"
+    },
+    {
+        "Course Code":"COMPSCI 690AB",
+        "Title":"Systems for Deep Learning",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 690BB",
+        "Title":"Quantum Cryptography",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 690G",
+        "Title":"Security for Large-Scale Systems",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 690K",
+        "Title":"Advanced Robot Dynamics and Control",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 690L",
+        "Title":"Deep Generative Models",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 690R",
+        "Title":"Computing for Digital Biomarkers in Healthcare",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 690S",
+        "Title":"Human-Centric Machine Learning",
+        "Credits":3,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 690U",
+        "Title":"Computational Biology and Bioinformatics",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 691NR",
+        "Title":"Seminar - Neural Networks: Neuroscience and Engineering",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 691O",
+        "Title":"Seminar - Tools for Explanatory and Tutoring Systems",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 692J",
+        "Title":"Seminar - Quantum Algorithms",
+        "Credits":3,
+        "Frequency":"Spring"
+    },
+    {
+        "Course Code":"COMPSCI 692L",
+        "Title":"Seminar - Natural Language Processing",
+        "Credits":1,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 698W",
+        "Title":"Practicum - CS Research Writing Practicum",
+        "Credits":1,
+        "Frequency":"Fall"
+    },
+    {
+        "Course Code":"COMPSCI 879",
+        "Title":"Teaching Assistants as Tomorrow's Faculty",
+        "Credits":2,
+        "Frequency":"Fall and Spring"
+    },
+    {
+        "Course Code":"COMPSCI 891M",
+        "Title":"Seminar - Theory of Computation",
+        "Credits":1,
+        "Frequency":"Fall and Spring"
+    }
+]
