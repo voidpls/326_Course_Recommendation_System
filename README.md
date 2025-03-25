@@ -25,6 +25,9 @@ The system recommends appropriate courses based on inputs and provides course de
 Course Schedule Builder:
 Students can select courses and generate schedules, the system will indicate time conflicts and provide suggestions for adjustments.
 
+Course description search up: 
+Students can search up interested courses through the course details tab.
+
 ### Why This Project? 
 We chose this app as we are all students who have at one point or another had to plan out our course schedule. We have spent lots of time looking through the course catalog and seeing what prerequisites are required for the courses we want to take. Having this app at our disposal would’ve been very helpful and hopefully we can help future students by building this app. 
 
