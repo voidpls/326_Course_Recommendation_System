@@ -1,0 +1,31 @@
+const courseElements = document.querySelectorAll("h2 ~ h3");
+
+const courses = Array.from(courseElements).map(h3 => {
+  const titleLine = h3.previousElementSibling?.innerText.trim();
+  const [code, ...titleParts] = titleLine.split(":");
+  const title = titleParts.join(":").trim();
+
+  const instructorsLine = h3.innerText.replace("Instructor(s):", "").trim();
+  const descriptionParagraphs = [];
+  let el = h3.nextElementSibling;
+
+  while (el && el.tagName === "P") {
+    descriptionParagraphs.push(el.innerText.trim());
+    el = el.nextElementSibling;
+  }
+
+  const fullDescription = descriptionParagraphs.join(" ");
+  const prereqMatch = fullDescription.match(/Prerequisite[s]?:\s*(.+?)\./i);
+  const creditMatch = fullDescription.match(/(\d+)\s*credit[s]?/i);
+
+  return {
+    code: code.trim(),
+    title,
+    instructors: instructorsLine,
+    description: fullDescription,
+    prerequisites: prereqMatch ? prereqMatch[1] : "N/A",
+    credits: creditMatch ? creditMatch[1] : "N/A"
+  };
+});
+
+console.log(courses);

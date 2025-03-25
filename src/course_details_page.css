@@ -41,7 +41,7 @@ main {
 
 /* Sidebar for search */
 .sidebar {
-    width: 900px;
+    width: 600px;
     padding: 20px;
     background-color: #f4f4f4;
     margin-right: 20px;
@@ -52,13 +52,18 @@ main {
 }
 
 #searchBox {
-    width: 100%;
-    padding: 8px;
+    width: 200px;
+    padding: 12px;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
-
+#searchBtn {
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+}
 /* Content area for course details */
 .content {
     width: 900px;
@@ -71,9 +76,12 @@ main {
     margin-top: 0;
 }
 
-.course-info {
-    margin-bottom: 15px;
+.course-item {
+    margin-bottom: 20px; /* or 2rem, 30px, etc. */
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* optional, for visual separation */
 }
+
 
 /* Footer styles */
 footer {
