@@ -44,25 +44,26 @@ footer {
 
 main{
     overflow:hidden;
+    display: flex;
 }
 
-.review-list{
+.course-list{
     background-color: red;
-    width: 50%;
+    width: 45%;
     height: 72.5vh;
-    justify-self: center;
     margin-top: 0;
     margin-bottom: 0;
+    margin-left: 2%;
     list-style-type: none;
     padding: 0;
     overflow-y: scroll;
 }
 
-.review-list::-webkit-scrollbar{
+.course-list::-webkit-scrollbar{
     display: none;
 }
 
-.review-item{
+.course-item{
     background-color: blue;
     height: 20%;
     width: 100%;
@@ -93,4 +94,62 @@ main{
 
 .name-text{
     background-color: yellow;
+}
+
+.select-container{
+    background-color: red;
+    width: 48%;
+    height: 72.5vh;
+    margin-left: 5%;
+    overflow-y: scroll;
+}
+
+.description{
+    background-color: blue;
+}
+
+.review-list{
+    background-color: red;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 2%;
+    list-style-type: none;
+    padding: 0;
+    margin-right: 2%;
+}
+
+.review-item{
+    background-color: blue;
+    height: 20%;
+    margin-top: 20px;
+}
+
+.select-container::-webkit-scrollbar{
+    display: none;
+}
+
+.review-title-box{
+    background-color: green;
+    height: 100%;
+    margin-left: 40px;
+    width: 100%;
+    align-content: center;
+}
+
+.review-title-text{
+    background-color: yellow;
+}
+
+.line{
+    display: flex;
+    background-color: purple;
+    width: 100%;
+}
+
+.additional-info{
+    margin-left: 25px;
+}
+
+.paragraph{
+    margin-left: 25px;
 }
