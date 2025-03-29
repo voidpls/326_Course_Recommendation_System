@@ -48,7 +48,7 @@ main{
 }
 
 .course-list{
-    background-color: red;
+    background-color: #dedce0;
     width: 45%;
     height: 72.5vh;
     margin-top: 0;
@@ -64,15 +64,18 @@ main{
 }
 
 .course-item{
-    background-color: blue;
+    background-color: #dedce0;
     height: 20%;
     width: 100%;
     margin-top: 20px;
     display: flex;
 }
 
+.course-item:hover{
+    background-color: #a2aab7;
+}
+
 .rating-box{
-    background-color: green;
     height: 100%;
     width: 15%;
     margin-left: 25px;
@@ -81,23 +84,20 @@ main{
 
 .rating-text{
     text-align: center;
-    background-color: yellow;
+    background-color: #6bade4;
 }
 
 .name-box{
-    background-color: green;
     height: 100%;
     margin-left: 40px;
     width: 100%;
     align-content: center;
 }
 
-.name-text{
-    background-color: yellow;
-}
+
 
 .select-container{
-    background-color: red;
+    background-color: #dedce0;
     width: 48%;
     height: 72.5vh;
     margin-left: 5%;
@@ -105,11 +105,10 @@ main{
 }
 
 .description{
-    background-color: blue;
+    margin-left: 25px;
 }
 
 .review-list{
-    background-color: red;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 2%;
@@ -119,9 +118,9 @@ main{
 }
 
 .review-item{
-    background-color: blue;
     height: 20%;
     margin-top: 20px;
+    background-color: #a2aab7;
 }
 
 .select-container::-webkit-scrollbar{
@@ -129,20 +128,14 @@ main{
 }
 
 .review-title-box{
-    background-color: green;
     height: 100%;
     margin-left: 40px;
     width: 100%;
     align-content: center;
 }
 
-.review-title-text{
-    background-color: yellow;
-}
-
 .line{
     display: flex;
-    background-color: purple;
     width: 100%;
 }
 
