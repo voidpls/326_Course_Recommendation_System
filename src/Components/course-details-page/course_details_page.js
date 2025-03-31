@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function fetchCourses() {
-    fetch("complete_course_list.json")
+    fetch("/src/Services/course-details-page/complete_course_list.json")
         .then(response => response.json())
         .then(data => {
             courses = data;
