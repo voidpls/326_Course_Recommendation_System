@@ -4,14 +4,29 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
 }
-/* Header styles */
+ /*Header styles */
 header {
-    background-color: #333;
+    background-color: #881c1c;
     color: #fff;
+    justify-content: space-between;
+
     padding: 20px;
     text-align: center;
 }
-
+.site-title {
+    display: inline-block;
+    vertical-align: middle;
+}
+svg#a {
+    /*display: inline-flex;*/
+    /*width: 5%;*/
+    /*height: 80px;*/
+    display: inline-block;
+    width: 40px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+}
 nav ul {
     list-style: none;
     margin: 10px 0 0 0;
@@ -84,11 +99,11 @@ main {
 }
 /* Footer styles */
 footer {
-    background-color: #333;
+    background-color: #881c1c;
     color: #fff;
     text-align: center;
     padding: 20px;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
