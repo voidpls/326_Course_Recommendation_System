@@ -3,18 +3,36 @@ main{
     flex-direction: column;
     align-items: center;
     margin: 20px;
-}
-.svg-container {
-    position: relative;
+    text-align: center;
+
 }
 
-    /* Disable text selection in SVG */
+.flowchart-seletion {
+    width: 600px;
+    background-color: #f4f4f4;
+    padding: 10px;
+}
+
+
+button {
+    padding:10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+
+.svg-container {
+    position: relative;
+    margin-top: 30px;
+}
+
 svg text {
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    pointer-events: none; /* Make clicks pass through text to the rectangle */
+    pointer-events: none; /* make clicks pass through text to the rectangle */
 }
 
 .course-box {
