@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="Components/my-profile-page/my_profile_page.css">
+</head>
+<body>
+
+<header>
+    <h1>Course Recommender</h1>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="course_details_page.html">Course Details Page</a></li>
+            <li><a href="course_progress_chart.html">My Course Progress</a></li>
+            <li><a href="course_review_page.html">Course Reviews</a></li>
+            <li><a href="my_profile.html">My Profile</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="sidebar">
+        <h2>Profile Summary</h2>
+        <p><strong>Name:</strong> X</p>
+        <p><strong>Email:</strong> X@example.com</p>
+        <p><strong>Major:</strong> Computer Science</p>
+        <p><strong>Graduation Year:</strong> 202X</p>
+    </div>
+
+    <div class="content">
+        <h2>Edit Profile</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <textarea id="name" placeholder="Enter your name"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <textarea id="email" placeholder="Enter your email"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="grad_year">Graduation Year</label>
+                <textarea id="grad_year" placeholder="Enter your year of graduation"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="interests">Interests</label>
+                <textarea id="interests" placeholder="Enter your interests"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="goals">Career Goals</label>
+                <textarea id="goals" placeholder="Enter your career goals"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="contact">Preferred Contact Method</label>
+                <input type="text" id="contact" placeholder="e.g., Email, Phone">
+            </div>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 Course Recommender. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
