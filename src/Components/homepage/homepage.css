@@ -44,6 +44,12 @@ main {
     background-color: #f4f4f4;
     margin-right: 20px;
 }
+.note {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 8px;
+}
+
 .sidebar h2 {
     margin-top: 0;
 }
