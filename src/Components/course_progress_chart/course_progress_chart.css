@@ -1,0 +1,64 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    text-align: center;
+
+}
+
+.flowchart-seletion {
+    width: 600px;
+    background-color: #f4f4f4;
+    padding: 10px;
+}
+
+
+button {
+    padding:10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+
+.svg-container {
+    position: relative;
+    margin-top: 30px;
+}
+
+svg text {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none; /* make clicks pass through text to the rectangle */
+}
+
+.course-box {
+    cursor: pointer;
+    transition: fill 0.2s;
+}
+
+.course-box.selected {
+    fill: #ebd1d1 !important;
+}
+
+.text-input {
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid black;
+    width: 80px;
+    height: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 600px;
+    background-color: #f9f9f9;
+    display: none;
+}
