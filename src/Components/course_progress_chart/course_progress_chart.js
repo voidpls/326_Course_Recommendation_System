@@ -50,9 +50,39 @@ function initFlowchart() {
         });
     });
     
-
+    // submit button
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        submitForm();
+    });
 }
 
+
+function submitForm() {
+    const selectedCourses = [];
+    const selectedBoxes = document.querySelectorAll('.course-box.selected');
+
+    selectedBoxes.forEach(box => {
+        const courseId = box.id;
+        let displayText = courseId;
+        
+        // if the course has an input field, append its value
+        const input = document.getElementById(courseId + '_input');
+        if (input && input.value.trim() !== '') {
+            displayText += ': ' + input.value.trim();
+        }
+        
+        selectedCourses.push(displayText);
+    });
+
+    console.log(selectedCourses)
+
+    
+    // display results
+    const resultsList = document.getElementById('results-list');
+    resultsList.innerHTML = selectedCourses.join(', ')
+    
+    document.getElementById('results').style.display = 'block';
+}
 
 function toggleSelection(courseBox) {
     courseBox.classList.toggle('selected');

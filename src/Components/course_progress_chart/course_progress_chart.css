@@ -41,7 +41,7 @@ svg text {
 }
 
 .course-box.selected {
-    fill: lightgreen !important;
+    fill: #ebd1d1 !important;
 }
 
 .text-input {
@@ -51,4 +51,14 @@ svg text {
     width: 80px;
     height: 20px;
     font-family: Arial, sans-serif;
+}
+
+.results {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 600px;
+    background-color: #f9f9f9;
+    display: none;
 }
