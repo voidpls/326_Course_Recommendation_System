@@ -1,25 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Profile</title>
-    <link rel="stylesheet" href="Components/my-profile-page/my_profile_page.css">
-</head>
-<body>
+<link rel="stylesheet" href="Components/my-profile-page/my_profile_page.css">
 
-<div id="header-placeholder"></div>
-
-<script>
-    fetch("header.html")
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("header-placeholder").innerHTML = data;
-        });
-</script>
-<script src="Services/course-details-page/my_profile_page.js"></script>
-
-<main>
-    <div class="sidebar">
+<main class="my-profile-page-main">
+    <div class="my-profile-page-sidebar">
         <h2>Profile Summary</h2>
         <p><strong>Name:</strong> <span id="summary-name">X</span></p>
         <p><strong>Email:</strong> <span id="summary-email">X@example.com</span></p>
@@ -30,56 +12,49 @@
         <p><strong>Preferred Contact:</strong> <span id="summary-contact">None</span></p>
     </div>
 
-    <div class="content">
+    <div class="my-profile-page-content">
         <h2>Edit Profile</h2>
         <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <textarea id="name" placeholder="Enter your name"></textarea>
+            <div class="my-profile-page-input">
+                <label for="my-profile-page-name">Name</label>
+                <textarea id="my-profile-page-name" placeholder="Enter your name"></textarea>
             </div>
-            <div class="form-group">
-                <label for="email">Your Email</label>
-                <textarea id="email" placeholder="Enter your email"></textarea>
+            <div class="my-profile-page-input">
+                <label for="my-profile-page-email">Your Email</label>
+                <textarea id="my-profile-page-email" placeholder="Enter your email"></textarea>
             </div>
-            <div class="form-group">
-                <label for="phone">Your Phone</label>
-                <textarea id="phone" placeholder="Enter your phone"></textarea>
+            <div class="my-profile-page-input">
+                <label for="my-profile-page-phone">Your Phone</label>
+                <textarea id="my-profile-page-phone" placeholder="Enter your phone"></textarea>
             </div>
-            <div class="form-group">
-                <label for="grad_year">Graduation Year</label>
-                <textarea id="grad_year" placeholder="Enter your year of graduation"></textarea>
+            <div class="my-profile-page-input">
+                <label for="my-profile-page-grad_year">Graduation Year</label>
+                <textarea id="my-profile-page-grad_year" placeholder="Enter your year of graduation"></textarea>
             </div>
-            <div class="form-group">
+            <div class="my-profile-page-input">
                 <label>Interests</label>
-                <div class="multiselect">
-                    <div class="select-box" id="interestsSelect" tabindex="0">
-                        <div id="selectedTags" placeholder="Select interests..."></div>
+                <div class="my-profile-page-multiselect">
+                    <div class="my-profile-page-select-box" id="my-profile-page-interestsSelect" tabindex="0">
+                        <div id="my-profile-page-selectedTags" placeholder="Select interests..."></div>
                     </div>
-                    <div class="options-container" id="interestsOptions">
-                        <div class="option" data-value="AI">AI</div>
-                        <div class="option" data-value="Machine Learning">Machine Learning</div>
-                        <div class="option" data-value="Data Science">Data Science</div>
-                        <div class="option" data-value="Web Development">Web Development</div>
-                        <div class="option" data-value="Cybersecurity">Cybersecurity</div>
-                        <div class="option" data-value="Cloud Computing">Cloud Computing</div>
+                    <div class="my-profile-page-options-container" id="my-profile-page-interestsOptions">
+                        <div class="my-profile-page-option" data-value="AI">AI</div>
+                        <div class="my-profile-page-option" data-value="Machine Learning">Machine Learning</div>
+                        <div class="my-profile-page-option" data-value="Data Science">Data Science</div>
+                        <div class="my-profile-page-option" data-value="Web Development">Web Development</div>
+                        <div class="my-profile-page-option" data-value="Cybersecurity">Cybersecurity</div>
+                        <div class="my-profile-page-option" data-value="Cloud Computing">Cloud Computing</div>
                     </div>
-                    <input type="hidden" id="interests" name="interests" value="">
+                    <input type="hidden" id="my-profile-page-interests" name="interests" value="">
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="contact">Preferred Contact Method</label>
-                <input type="text" id="contact" placeholder="e.g., Email, Phone">
+            <div class="my-profile-page-input">
+                <label for="my-profile-page-contact">Preferred Contact Method</label>
+                <input type="text" id="my-profile-page-contact" placeholder="e.g., Email, Phone">
             </div>
 
             <button type="submit">Save Changes</button>
         </form>
     </div>
 </main>
-
-<footer>
-    <p>© 2025 Course Recommender. All rights reserved.</p>
-</footer>
-
-</body>
-</html>

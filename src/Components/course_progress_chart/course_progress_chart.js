@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const cs_bs_2023_flowchart = await fetch('Components/course_progress_chart/cs_bs_2023_flowchart.html')
-    const html = await cs_bs_2023_flowchart.text()
-    const parent = document.getElementById('course-flowchart-container')
+    const cs_bs_2023_flowchart = await fetch('Components/course_progress_chart/cs_bs_2023_flowchart.html');
+    const html = await cs_bs_2023_flowchart.text();
+    const parent = document.getElementById('course-flowchart-container');
 
-    parent.innerHTML = html
+    parent.innerHTML = html;
 
     initFlowchart();
 });
@@ -51,7 +51,7 @@ function initFlowchart() {
     });
     
     // submit button
-    document.getElementById('submitBtn').addEventListener('click', function() {
+    document.getElementById('course-progress-chart-submitBtn').addEventListener('click', function() {
         submitForm();
     });
 }
@@ -78,10 +78,10 @@ function submitForm() {
 
     
     // display results
-    const resultsList = document.getElementById('results-list');
+    const resultsList = document.getElementById('course-progress-chart-results-list');
     resultsList.innerHTML = selectedCourses.join(', ')
     
-    document.getElementById('results').style.display = 'block';
+    document.getElementById('course-progress-chart-results').style.display = 'block';
 }
 
 function toggleSelection(courseBox) {

@@ -1,42 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Course Details</title>
-  <link rel="stylesheet" href="Components/course-details-page/course_details_page.css">
-</head>
-<body>
+<link rel="stylesheet" href="Components/course-details-page/course_details_page.css">
 
-<div id="header-placeholder"></div>
+<main class = "course-details-main">
 
-<script>
-  fetch("header.html")
-          .then(res => res.text())
-          .then(data => {
-            document.getElementById("header-placeholder").innerHTML = data;
-          });
-</script>
-
-<main>
   <!-- Sidebar for search -->
-  <div class="sidebar">
+  <div class="course-details-sidebar">
     <h2>Search Courses</h2>
-    <input type="text" id="searchBox" placeholder="Search for a course...">
-    <button id="searchBtn">Search</button>
+    <input type="text" id="course-details-searchBox" placeholder="Search for a course...">
+    <button id="course-details-searchBtn">Search</button>
   </div>
-  <div id="courseList"></div>
-  <div id="courseDetails"></div>
-
-  <!-- Temp course description, will be replaced by js and json -->
-
-  <script src="./Components/course-details-page/course_details_page.js"></script>
-
+  <div class="course-details-content">
+    <div id="course-details-courseList"></div>
+    <div id="course-details-courseDetails"></div>
+  </div>
 </main>
-
-<footer>
-  <p>&copy; 2025 Course Recommender. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
