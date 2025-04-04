@@ -116,3 +116,79 @@ footer {
     padding: 20px;
     margin-top: auto;
 }
+
+/* 多选下拉框的样式 */
+.multiselect {
+    position: relative;
+    width: 90%;
+}
+
+.select-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: white;
+    min-height: 20px;
+}
+
+.select-box:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.options-container {
+    display: none;
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: white;
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.options-container.show {
+    display: block;
+}
+
+.option {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+.option.selected {
+    background-color: #e0e0e0;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.tag-remove {
+    margin-left: 4px;
+    cursor: pointer;
+    color: #999;
+}
+
+.tag-remove:hover {
+    color: #555;
+}
+
+#selectedTags {
+    color: #999;
+}
+
+#selectedTags .tag {
+    color: #333;
+}

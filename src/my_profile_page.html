@@ -16,14 +16,18 @@
             document.getElementById("header-placeholder").innerHTML = data;
         });
 </script>
+<script src="Services/course-details-page/my_profile_page.js"></script>
 
 <main>
     <div class="sidebar">
         <h2>Profile Summary</h2>
-        <p><strong>Name:</strong> X</p>
-        <p><strong>Email:</strong> X@example.com</p>
-        <p><strong>Major:</strong> Computer Science</p>
-        <p><strong>Graduation Year:</strong> 202X</p>
+        <p><strong>Name:</strong> <span id="summary-name">X</span></p>
+        <p><strong>Email:</strong> <span id="summary-email">X@example.com</span></p>
+        <p><strong>Phone:</strong> <span id="summary-phone">123</span></p>
+        <p><strong>Major:</strong> <span id="summary-major">Computer Science</span></p>
+        <p><strong>Graduation Year:</strong> <span id="summary-grad-year">202X</span></p>
+        <p><strong>Interests:</strong> <span id="summary-interests">None</span></p>
+        <p><strong>Preferred Contact:</strong> <span id="summary-contact">None</span></p>
     </div>
 
     <div class="content">
@@ -38,22 +42,28 @@
                 <textarea id="email" placeholder="Enter your email"></textarea>
             </div>
             <div class="form-group">
+                <label for="phone">Your Phone</label>
+                <textarea id="phone" placeholder="Enter your phone"></textarea>
+            </div>
+            <div class="form-group">
                 <label for="grad_year">Graduation Year</label>
                 <textarea id="grad_year" placeholder="Enter your year of graduation"></textarea>
             </div>
             <div class="form-group">
                 <label>Interests</label>
-                <div class="profile-field">
-                    <span id="interestsDisplay">Loading...</span>
-                    <button type="button" onclick="editField('interests')">Edit</button>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Career Goals</label>
-                <div class="profile-field">
-                    <span id="goalsDisplay">Loading...</span>
-                    <button type="button" onclick="editField('goals')">Edit</button>
+                <div class="multiselect">
+                    <div class="select-box" id="interestsSelect" tabindex="0">
+                        <div id="selectedTags" placeholder="Select interests..."></div>
+                    </div>
+                    <div class="options-container" id="interestsOptions">
+                        <div class="option" data-value="AI">AI</div>
+                        <div class="option" data-value="Machine Learning">Machine Learning</div>
+                        <div class="option" data-value="Data Science">Data Science</div>
+                        <div class="option" data-value="Web Development">Web Development</div>
+                        <div class="option" data-value="Cybersecurity">Cybersecurity</div>
+                        <div class="option" data-value="Cloud Computing">Cloud Computing</div>
+                    </div>
+                    <input type="hidden" id="interests" name="interests" value="">
                 </div>
             </div>
 
