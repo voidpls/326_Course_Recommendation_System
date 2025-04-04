@@ -1,109 +1,88 @@
-/* Basic resets */
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-}
- /*Header styles */
-header {
-    background-color: #881c1c;
-    color: #fff;
-    justify-content: space-between;
-
-    padding: 20px;
-    text-align: center;
-}
-.site-title {
-    display: inline-block;
-    vertical-align: middle;
-}
-svg#a {
-    /*display: inline-flex;*/
-    /*width: 5%;*/
-    /*height: 80px;*/
-    display: inline-block;
-    width: 40px;
-    height: auto;
-    vertical-align: middle;
-    margin-right: 10px;
-}
-nav ul {
-    list-style: none;
-    margin: 10px 0 0 0;
-    padding: 0;
-}
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-    cursor: pointer;
-}
-nav ul li a {
-    text-decoration: none;
-    color: white; /* Makes the text white */
-    padding: 8px 12px;
 }
 
-nav ul li a:hover {
-    text-decoration: underline; /* Optional: Underline effect on hover */
-}
-/* Main layout */
-main {
+.homepage-main {
+    background-color: #ffffff;
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
     padding: 20px;
-}
-/* Sidebar for user input */
-.sidebar {
-    flex: 1;
-    max-width: 300px;
-    padding: 20px;
-    background-color: #f4f4f4;
-    margin-right: 20px;
-}
-.note {
-    font-size: 0.85em;
-    color: #666;
-    margin-bottom: 8px;
+    gap: 60px; /* spacing between sidebar and content */
 }
 
-.sidebar h2 {
+/* Sidebar styling */
+.homepage-sidebar {
+    flex: 1;
+    max-width: 280px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.homepage-sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
     margin-top: 0;
 }
-.form-group {
+
+.homepage-input {
     margin-bottom: 15px;
+    margin-right: 20px;
 }
-.form-group label {
+
+.homepage-input label {
     display: block;
+    font-weight: bold;
     margin-bottom: 5px;
 }
-.form-group input,
-.form-group textarea {
+
+.homepage-input input {
     width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
-/* Content area for recommendations */
-.content {
+
+.homepage-sidebar button {
+    padding: 10px 16px;
+    font-size: 14px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Recommendations section */
+.homepage-content {
     flex: 2;
-    padding: 20px;
+    margin-top: 10px;
 }
-.content h2 {
+
+.homepage-content h2 {
+    font-size: 22px;
     margin-top: 0;
+    margin-bottom: 20px;
 }
-.recommendation {
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
+
+.homepage-recommendation {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
 }
-.recommendation h3 {
-    margin: 0 0 5px 0;
+
+.homepage-recommendation h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
 }
-/* Footer styles */
-footer {
-    background-color: #881c1c;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+
+.homepage-recommendation p {
+    font-size: 14px;
+    color: #444;
 }

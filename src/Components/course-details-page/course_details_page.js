@@ -1,22 +1,7 @@
-let courses = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-    fetchCourses();
-});
-
-function fetchCourses() {
-    fetch("/src/Services/course-details-page/complete_course_list.json")
-        .then(response => response.json())
-        .then(data => {
-            courses = data;
-            displayCourses(courses);    // Show all courses
-            setupSearch();              // Enable live search
-        })
-        .catch(error => console.error("Failed to load course data:", error));
-}
 
 function displayCourses(list) {
-    const courseList = document.getElementById("courseList");
+    const courseList = document.getElementById("course-details-courseList");
     courseList.innerHTML = "";
 
     if (list.length === 0) {
@@ -26,7 +11,7 @@ function displayCourses(list) {
 
     list.forEach(course => {
         const div = document.createElement("div");
-        div.classList.add("course-item");
+        div.classList.add("course-details-course-item");
 
         // Normalize instructors
         const instructors = Array.isArray(course.instructors)
@@ -52,38 +37,27 @@ function displayCourses(list) {
 }
 
 function setupSearch() {
-    const searchBox = document.getElementById("searchBox");
-    const searchBtn = document.getElementById("searchBtn");
+    const searchBox = document.getElementById("course-details-searchBox");
+    const searchBtn = document.getElementById("course-details-searchBtn");
 
     if (!searchBox || !searchBtn) {
         console.error("Search input or button not found!");
         return;
     }
 
-    searchBtn.addEventListener("click", searchCourses);
-}
+    searchBtn.addEventListener("click", ()=>{
+        const searchBox = document.getElementById("course-details-searchBox");
+        const query = searchBox.value.trim().toLowerCase();
+        displayCourses(query === "" ? courses : courses.filter(course => {
+            const code = course.code.toLowerCase();
+            const number = code.match(/\d+/)?.[0] || "";
+            const title = course.title?.toLowerCase() || "";
 
-function searchCourses() {
-    const searchBox = document.getElementById("searchBox");
-    const query = searchBox.value.trim().toLowerCase();
-
-    if (query === "") {
-        displayCourses(courses); // Show all if empty
-        return;
-    }
-
-    const filtered = courses.filter(course => {
-        const code = course.code.toLowerCase();
-        const number = code.match(/\d+/)?.[0] || "";
-        const title = course.title?.toLowerCase() || "";
-
-        return (
-            code.includes(query) ||
-            number === query ||
-            title.includes(query)
-        );
+            return (
+                code.includes(query) ||
+                number === query ||
+                title.includes(query)
+            );
+        }));
     });
-
-    displayCourses(filtered);
 }
-

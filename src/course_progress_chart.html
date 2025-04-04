@@ -1,52 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Course Details</title>
-    <link rel="stylesheet" href="./Components/homepage/homepage.css">
-    <link rel="stylesheet" href="./Components/course_progress_chart/course_progress_chart.css">
+<link rel="stylesheet" href="Components/course_progress_chart/course_progress_chart.css">
 
-</head>
-
-<body>
-
-<div id="header-placeholder"></div>
-
-<script>
-  fetch("header.html")
-          .then(res => res.text())
-          .then(data => {
-            document.getElementById("header-placeholder").innerHTML = data;
-          });
-</script>
-<script type="module" src="./Components/course_progress_chart/course_progress_chart.js"></script>
-
-
-<main>
+<main class = "course-progress-chart-main">
   <div class="flowchart-seletion">
     <h3>Which course track are you on?</h3>
-    <button>Computer Science BS 2023-Now</button>
+    <button class = "course-progress-chart-button">Computer Science BS 2023-Now</button>
     <br>
-    <button>Computer Science BS Pre-2023</button>
+    <button class = "course-progress-chart-button">Computer Science BS Pre-2023</button>
 
   </div>
   <div class="course-flowchart">
-    <div id="course-flowchart-container" class="svg-container">
+    <div id="course-flowchart-container" class="course-progress-chart-svg-container">
     </div>
   </div>
-  
-  <button id="submitBtn">Submit Selected Courses</button>
 
-  <div id="results" class="results">
+  <button id="course-progress-chart-submitBtn">Submit Selected Courses</button>
+
+  <div id="course-progress-chart-results" class="course-progress-chart-results">
     <h3>Selected Courses:</h3>
-    <div id="results-list"></div>
-  </div> 
+    <div id="course-progress-chart-results-list"></div>
+  </div>
 </main>
-
-<footer>
-  <p>&copy; 2025 Course Recommender. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
