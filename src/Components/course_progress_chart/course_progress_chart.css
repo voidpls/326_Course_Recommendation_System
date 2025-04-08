@@ -21,10 +21,6 @@ button {
     margin-bottom: 5px;
 }
 
-.selected {
-    border-width: 2px;    
-}
-
 
 .svg-container {
     position: relative;
