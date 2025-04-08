@@ -6,7 +6,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     parent.innerHTML = html;
 
     initFlowchart();
+    await initSelectionButtons();
 });
+
+async function initSelectionButtons() {
+    const selectionBtns = document.getElementsByClassName('course-progress-chart-button')
+    Array.from(selectionBtns)
+        .forEach(btn => btn.addEventListener('click', async () => await changeCourse(selectionBtns, btn)))
+}
+
+async function changeCourse(btns, btn) {
+    if (btn.classList.contains("course-progress-chart-button-selected")) return
+
+    // remove selected from all selection btns
+    Array.from(btns).forEach(btn => btn.classList.remove('course-progress-chart-button-selected'))
+
+    // add selected to new btn
+    btn.classList.add('course-progress-chart-button-selected')
+
+    const parent = document.getElementById('course-flowchart-container');
+    if (btn.id === 'flowchart-2023') {
+        const cs_bs_2023_flowchart = await fetch('Components/course_progress_chart/cs_bs_2023_flowchart.html');
+        const html = await cs_bs_2023_flowchart.text();
+    
+        parent.innerHTML = html;
+    
+    } else if (btn.id === 'flowchart-2016') {
+        const cs_bs_2016_flowchart = await fetch('Components/course_progress_chart/cs_bs_2016_flowchart.html');
+        const html = await cs_bs_2016_flowchart.text();
+
+        parent.innerHTML = html;
+    }
+
+    initFlowchart()
+}
 
 function initFlowchart() {
     // load saved state when page loads
