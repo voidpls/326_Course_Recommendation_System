@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Course Details</title>
-  <link rel="stylesheet" href="Components/course-review-page/course_review_page.css">
-</head>
-<body>
-
-<div id="header-placeholder"></div>
-
-<script>
-    fetch("header.html")
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("header-placeholder").innerHTML = data;
-        });
-</script>
+<link rel="stylesheet" href="Components/course-review-page/course_review_page.css">
 
 <main>
     <ul class="course-list">
@@ -141,10 +123,3 @@
         </ul>
     </div>
 </main>
-
-<footer>
-  <p>&copy; 2025 Course Recommender. All rights reserved.</p>
-</footer>
-
-</body>
-</html>

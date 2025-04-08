@@ -1,50 +1,12 @@
-/* Basic resets */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Header styles */
-header {
-    background-color: #881c1c;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    margin: 10px 0 0 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 8px 12px;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
 /* Main layout */
-main {
+.my-profile-page-main {
     display: flex;
     padding: 20px;
     background-color: #f9f9f9;
 }
 
 /* Sidebar section */
-.sidebar {
+.my-profile-page-sidebar {
     flex: 1;
     max-width: 300px;
     background-color: #f4f4f4;
@@ -53,16 +15,16 @@ main {
     border-radius: 8px;
 }
 
-.sidebar h2 {
+.my-profile-page-sidebar h2 {
     margin-top: 0;
 }
 
-.sidebar p {
+.my-profile-page-sidebar p {
     margin: 10px 0;
 }
 
 /* Main content section */
-.content {
+.my-profile-page-content {
     flex: 2;
     padding: 20px;
     background-color: white;
@@ -70,22 +32,21 @@ main {
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.05);
 }
 
-.content h2 {
+.my-profile-page-sidebar h2 {
     margin-top: 0;
 }
 
-.form-group {
+.my-profile-page-input {
     margin-bottom: 20px;
 }
 
-.form-group label {
+.my-profile-page-input label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
 }
 
-.form-group input,
-.form-group textarea {
+.my-profile-page-input textarea {
     width: 90%;
     padding: 10px;
     box-sizing: border-box;
@@ -94,7 +55,6 @@ main {
     resize: vertical;
 }
 
-/* Button styling */
 button {
     padding: 10px 16px;
     background-color: #333;
@@ -108,11 +68,155 @@ button:hover {
     background-color: #555;
 }
 
-/* Footer styles */
-footer {
-    background-color: #881c1c;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
+
+/* 多选下拉框的样式 */
+.my-profile-page-multiselect {
+    position: relative;
+    width: 90%;
+}
+
+.my-profile-page-select-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: white;
+    min-height: 20px;
+}
+
+.my-profile-page-select-box:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.my-profile-page-options-container {
+    display: none;
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: white;
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.my-profile-page-options-container.show {
+    display: block;
+}
+
+.my-profile-page-option {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.my-profile-page-option:hover {
+    background-color: #f0f0f0;
+}
+
+.my-profile-page-option.selected {
+    background-color: #e0e0e0;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.tag-remove {
+    margin-left: 4px;
+    cursor: pointer;
+    color: #999;
+}
+
+.tag-remove:hover {
+    color: #555;
+}
+
+.my-profile-page-selectedTags {
+    color: #999;
+}
+
+.my-profile-page-selectedTags.tag {
+    color: #333;
+}
+
+/* 多选下拉框的样式 */
+.multiselect {
+    position: relative;
+    width: 90%;
+}
+
+.select-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: white;
+    min-height: 20px;
+}
+
+.select-box:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.options-container {
+    display: none;
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: white;
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.options-container.show {
+    display: block;
+}
+
+.option {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+
+.option.selected {
+    background-color: #e0e0e0;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    margin: 2px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.tag-remove {
+    margin-left: 4px;
+    cursor: pointer;
+    color: #999;
+}
+
+.tag-remove:hover {
+    color: #555;
+}
+
+#selectedTags {
+    color: #999;
+}
+
+#selectedTags .tag {
+    color: #333;
 }

@@ -1,57 +1,28 @@
-/* Basic resets */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Header styles */
-header {
-    background-color: #881c1c;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    margin: 10px 0 0 0;
-    padding: 0;
-}
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-    cursor: pointer;
-}
-nav ul li a {
-    text-decoration: none;
-    color: white; /* Makes the text white */
-    padding: 8px 12px;
-}
-
-nav ul li a:hover {
-    text-decoration: underline; /* Optional: Underline effect on hover */
-}
-
 /* Main layout */
-main {
+.course-details-main {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
     padding: 20px;
 }
 
 /* Sidebar for search */
-.sidebar {
-    width: 600px;
+.course-details-sidebar {
+    flex: 1;
+    align-self: flex-start; /* ⬅️ this tells JUST the sidebar to stay at top */
+    max-width: 300px;
     padding: 20px;
     background-color: #f4f4f4;
+    border-radius: 10px;
     margin-right: 20px;
 }
 
-.sidebar h2 {
+.course-details-sidebar h2 {
     margin-top: 0;
 }
 
-#searchBox {
+#course-details-searchBox {
     width: 200px;
     padding: 12px;
     box-sizing: border-box;
@@ -59,37 +30,21 @@ main {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-#searchBtn {
+#course-details-searchBtn {
     padding: 8px 12px;
     font-size: 1rem;
     cursor: pointer;
 }
 /* Content area for course details */
-.content {
-    width: 900px;
-    padding: 20px;
-    background: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+.course-details-content {
+    flex: 2;
 }
 
-.content h2 {
+.course-details-content h2 {
     margin-top: 0;
 }
 
-.course-item {
+.course-details-course-item {
     margin-bottom: 20px; /* or 2rem, 30px, etc. */
-    padding: 10px;
     border-bottom: 1px solid #ccc; /* optional, for visual separation */
-}
-
-
-/* Footer styles */
-footer {
-    background-color: #881c1c;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
