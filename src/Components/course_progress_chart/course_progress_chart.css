@@ -44,6 +44,12 @@ svg text {
     fill: #ebd1d1 !important;
 }
 
+.course-progress-chart-button-selected {
+    background-color: #555;
+    border: 2px solid #333;
+
+}
+
 .text-input {
     position: absolute;
     box-sizing: border-box;
