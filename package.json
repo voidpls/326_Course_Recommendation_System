@@ -15,8 +15,7 @@
   "type": "commonjs",
   "main": "api/server.js",
   "scripts": {
-    "start": "node api/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node api/server.js"
   },
   "dependencies": {
     "express": "^5.1.0"
