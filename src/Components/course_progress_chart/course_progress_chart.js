@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+export async function courseProgressPageSetup() {
     const cs_bs_2023_flowchart = await fetch('Components/course_progress_chart/cs_bs_2023_flowchart.html');
     const html = await cs_bs_2023_flowchart.text();
     const parent = document.getElementById('course-flowchart-container');
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     initFlowchart();
     await initSelectionButtons();
-});
+};
 
 async function initSelectionButtons() {
     const selectionBtns = document.getElementsByClassName('course-progress-chart-button')
