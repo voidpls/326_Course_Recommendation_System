@@ -11,11 +11,19 @@ function extractAllCourseCodes() {
     const codes = new Set();
     courses.forEach(course => {
         const upperCode = course.code.toUpperCase();
-        if ((upperCode.startsWith("COMPSCI") || upperCode.startsWith("CICS")) && !upperCode.startsWith("MATH") && !upperCode.startsWith("INFO")) {
+        if (upperCode.startsWith("COMPSCI") || upperCode.startsWith("CICS")) {
             codes.add(upperCode);
         }
     });
     return codes;
+}
+
+function matchesCourseLevel(courseCode, selectedLevels) {
+    const numberMatch = courseCode.match(/\b(\d{3})\b/);
+    if (!numberMatch) return false;
+    const courseNum = parseInt(numberMatch[1]);
+    const courseLevel = Math.floor(courseNum / 100) * 100;
+    return selectedLevels.includes(courseLevel.toString());
 }
 
 const courseCodesSet = new Set();
@@ -23,24 +31,36 @@ document.addEventListener("DOMContentLoaded", () => {
     if (typeof courses !== "undefined" && Array.isArray(courses)) {
         extractAllCourseCodes().forEach(code => courseCodesSet.add(code));
         displayCourses();
+        setupFilters();
     } else {
         const interval = setInterval(() => {
             if (typeof courses !== "undefined" && Array.isArray(courses)) {
                 extractAllCourseCodes().forEach(code => courseCodesSet.add(code));
                 displayCourses();
+                setupFilters();
                 clearInterval(interval);
             }
         }, 100);
     }
 });
 
-function displayCourses(list = courses, addBackButton = false) {
+function displayCourses(list = courses, addBackButton = false, isFromFilter = false) {
     const courseList = document.getElementById("course-details-courseList");
     if (!courseList) return;
     courseList.innerHTML = "";
 
+    if (addBackButton && !isFromFilter) {
+        const backBtn = document.createElement("button");
+        backBtn.textContent = "⬅️ Back";
+        backBtn.id = "back-button";
+        backBtn.addEventListener("click", () => {
+            displayCourses(courses);
+        });
+        courseList.appendChild(backBtn);
+    }
+
     if (list.length === 0) {
-        courseList.innerHTML = "<p>No matching courses found.</p>";
+        courseList.innerHTML += "<p>No matching courses found.</p>";
         return;
     }
 
@@ -51,9 +71,16 @@ function displayCourses(list = courses, addBackButton = false) {
         const instructors = Array.isArray(course.instructors) ? course.instructors.join(", ") : course.instructors || "N/A";
         const prerequisites = Array.isArray(course.prerequisites) ? course.prerequisites.join(", ") : course.prerequisites || "None";
 
-        const prereqButtons = prerequisites.replace(/\b(COMPSCI\s*\d+|CICS\s*\d+)\b/gi, match => {
+        const prereqButtons = prerequisites.replace(/\b(COMPSCI\s*\d+|CICS\s*\d+|\d{3})\b/gi, (match, _, offset, string) => {
             const clean = match.trim().replace(/\s+/g, ' ');
             const upper = clean.toUpperCase();
+
+            if (!upper.startsWith("COMPSCI") && !upper.startsWith("CICS")) {
+                const nearby = string.slice(Math.max(0, offset - 30), offset + 30).toUpperCase();
+                const grouped = /(COMPSCI|CICS)\s*\d+.*(OR|AND).*\b\d{3}\b/.test(nearby);
+                if (!grouped) return match;
+            }
+
             return courseCodesSet.has(upper) ? `<button class=\"prereq-button\" data-code=\"${clean}\">${clean}</button>` : match;
         });
 
@@ -65,16 +92,6 @@ function displayCourses(list = courses, addBackButton = false) {
       <p><strong>Credits:</strong> ${course.credits ?? "N/A"}</p>
       <p><strong>Offered Semester:</strong> ${course.frequency ?? "N/A"}</p>
     `;
-
-        if (addBackButton) {
-            const backBtn = document.createElement("button");
-            backBtn.textContent = "⬅️ Back";
-            backBtn.id = "back-button";
-            backBtn.addEventListener("click", () => {
-                displayCourses(courses);
-            });
-            div.appendChild(backBtn);
-        }
 
         courseList.appendChild(div);
     });
@@ -112,5 +129,39 @@ function setupSearch() {
             }),
             query !== "" // add back button only for filtered results
         );
+    });
+}
+
+function setupFilters() {
+    const sidebar = document.getElementById("course-details-filters");
+    if (!sidebar) return;
+
+    const levelFilters = [100, 200, 300, 400, 500];
+    const semesterFilters = ["Fall", "Spring"];
+
+    const filterSection = document.createElement("div");
+    filterSection.innerHTML = `
+      <h4>Filter by Course Level</h4>
+      ${levelFilters.map(level => `
+        <label><input type="checkbox" class="filter-level" value="${level}"> ${level}</label><br>
+      `).join('')}
+      <h4>Filter by Semester</h4>
+      ${semesterFilters.map(sem => `
+        <label><input type="checkbox" class="filter-semester" value="${sem}"> ${sem}</label><br>
+      `).join('')}
+    `;
+    sidebar.appendChild(filterSection);
+
+    sidebar.addEventListener("change", () => {
+        const selectedLevels = Array.from(document.querySelectorAll(".filter-level:checked")).map(cb => cb.value);
+        const selectedSemesters = Array.from(document.querySelectorAll(".filter-semester:checked")).map(cb => cb.value);
+
+        const filtered = courses.filter(course => {
+            const levelMatch = selectedLevels.length === 0 || matchesCourseLevel(course.code, selectedLevels);
+            const semesterMatch = selectedSemesters.length === 0 || selectedSemesters.some(sem => course.frequency?.includes(sem));
+            return levelMatch && semesterMatch;
+        });
+
+        displayCourses(filtered, false, true);
     });
 }

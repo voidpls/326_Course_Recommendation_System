@@ -1,5 +1,14 @@
 [
   {
+    "code": "CICS 109",
+    "title": "Introduction to Data Analysis in R",
+    "instructors": "Jasper McChesney",
+    "description": "An introduction to data analysis in the open-source R language, with an emphasis on practical data work. Topics will include data wrangling, summary statistics, modeling, and visualization. Will also cover fundamental programming concepts including data types, functions, flow of control, and good programming practices. Intended for a broad range of students outside of computer science. Some familiarity with statistics is expected. 1 credit.",
+    "prerequisites": "N/A",
+    "credits": "1",
+    "frequency": "Spring"
+  },
+  {
     "code": "CICS 110",
     "title": "Foundations of Programming",
     "instructors": "Cole Reilly, Jacob Urisman, Brett Mullins, Prit Pritam Shah, Aadam Anish Lokhandwala",
@@ -718,15 +727,6 @@
     "prerequisites": "A grade of C or better in INFO 248 or a grade of C or better in both CICS 210 and COMPSCI 240 3 credits",
     "credits": "3",
     "frequency": null
-  },
-  {
-    "code": "CICS 109",
-    "title": "Introduction to Data Analysis in R",
-    "instructors": "Jasper McChesney",
-    "description": "An introduction to data analysis in the open-source R language, with an emphasis on practical data work. Topics will include data wrangling, summary statistics, modeling, and visualization. Will also cover fundamental programming concepts including data types, functions, flow of control, and good programming practices. Intended for a broad range of students outside of computer science. Some familiarity with statistics is expected. 1 credit.",
-    "prerequisites": "N/A",
-    "credits": "1",
-    "frequency": "Spring"
   },
   {
     "code": "CICS 291S",
