@@ -3,17 +3,15 @@
 <main>
     <ul class="course-list" id="course-list"></ul>
     <div class="select-container">
-        <div class="course-item">
-            <div class="rating-box">
-                <h1 class="rating-text">3.1</h1>
-            </div>
+        <div class="course-item-selected" id="course-item-selected">
             <div class="name-box">
-                <h1 class="name-text">Selected Course Name</h1>
+                <h1 class="name-text">Select a course</h1>
             </div>
         </div>
-        <div class="description">
-            description, instructors, credits, prerequisites, other info
-        </div>
+        <div class="prerequisites" id="prerequisites"></div>
+        <div class="description" id="credits"></div>
+        <div class="description" id="instructors"></div>
+        <div class="review-container">
         <ul class="review-list">
             <li class="review-item">
                 <div class="line">
@@ -80,5 +78,6 @@
                 </div>
             </li>
         </ul>
+        </div>
     </div>
 </main>

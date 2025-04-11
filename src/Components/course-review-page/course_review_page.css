@@ -51,14 +51,16 @@ main{
     align-content: center;
 }
 
-
-
 .select-container{
     background-color: #dedce0;
-    width: 48%;
+    width: 50%;
     height: 72.5vh;
-    margin-left: 5%;
-    overflow-y: scroll;
+    margin-left: 3%;
+}
+
+.prerequisites{
+    margin-top: 15px;
+    margin-left: 25px;
 }
 
 .description{
@@ -102,4 +104,17 @@ main{
 
 .paragraph{
     margin-left: 25px;
+}
+
+.course-item-selected{
+    background-color: #dedce0;
+    height: 20%;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+}
+
+.review-container{
+    height: 100%;
+    overflow-y: scroll;
 }
