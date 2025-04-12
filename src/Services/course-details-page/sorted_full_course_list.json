@@ -666,69 +666,6 @@
     "frequency": null
   },
   {
-    "code": "INFO 101",
-    "title": "Introduction to Informatics",
-    "instructors": "Michelle Trim",
-    "description": "An introduction to the main concepts of Informatics. There are several 'Big Ideas' in computing, including but not limited to abstraction, data and information, algorithms, programming, the internet, and the global impacts of computing. This class provides an introduction to those ideas and considers some of the ways that those computing principles might be used to solve real world problems. Computer-based assignments are an integral part of this course but no programming knowledge or prior programming experience is expected or required. Open to undergraduate students NOT majoring in Computer Science. 3 credits.",
-    "prerequisites": "N/A",
-    "credits": "3",
-    "frequency": null
-  },
-  {
-    "code": "INFO 150",
-    "title": "A Mathematical Foundation for Informatics",
-    "instructors": "Chloe Becquey",
-    "description": "Mathematical techniques useful in the study of computing and information processing. The mathematical method of definition and proof. Sets, functions, and relations. Combinatorics, probability and probabilistic reasoning. Graphs and trees as models of data and of computational processes. Prerequisite: R1 math skills recommended. Not intended for Computer Science majors students interested in a majors-level treatment of this material should see COMPSCI 240 and 250 (or MATH 455). 3 credits.",
-    "prerequisites": "R1 math skills recommended",
-    "credits": "3",
-    "frequency": null
-  },
-  {
-    "code": "INFO 203",
-    "title": "A Networked World",
-    "instructors": "Mohammadhassan Hajiesmaili",
-    "description": "The course will cover the technical foundations of today s communication networks, particularly the Internet. It will also address key social, policy, economic and legal aspects of these networks, their use (and abuse), and their regulation. This course covers computer science topics, but all material will be presented in a way that is accessible to an educated audience with or without a strong technical background. Not intended for Computer Science majors students interested in a CS majors-level treatment of this material should see COMPSCI 453. 3 credits.",
-    "prerequisites": "N/A",
-    "credits": "3",
-    "frequency": null
-  },
-  {
-    "code": "INFO 248",
-    "title": "Introduction to Data Science",
-    "instructors": "Gordon Anderson",
-    "description": "This course is an introduction to the concepts and skills involved with the collection, management, analysis, and presentation of data sets and the data products that result from the work of data scientists. Privacy, algorithmic bias and ethical issues are also discussed. Students will work with data from the financial, epidemiological, educational, and other domains. The course provides examples of real-world data that students work with using various software tools. This course consists of two lecture meetings and one lab meeting per week. Readings will be assigned as preparation for each class meeting. A semester project will be assigned. Students work in pairs to develop their project over the semester. The project provides students with an opportunity to work collaboratively to explore the topics in more depth in a specialized domain. A midterm and final exam will be given. Grades are determined by a combination of scores on lab activities, projects, and exam scores. Software: all software is freely available. Open to INFORM majors. Prerequisite: a grade of C or or above in the following courses: CICS 110 (or CICS 160 or COMPSCI 119 or COMPSCI 121) with a grade of C or above and either: PSYCH 240, OIM 240, STATISTC 240, RES-ECON 212, SOCIOL 212, OR STATISTC 315/515, OR COMPSCI 240, with a grade of C or above. 4 credits.",
-    "prerequisites": "a grade of C or or above in the following courses: CICS 110 (or CICS 160 or COMPSCI 119 or COMPSCI 121) with a grade of C or above and either: PSYCH 240, OIM 240, STATISTC 240, RES-ECON 212, SOCIOL 212, OR STATISTC 315/515, OR COMPSCI 240, with a grade of C or above",
-    "credits": "4",
-    "frequency": null
-  },
-  {
-    "code": "INFO 324",
-    "title": "Introduction to Clinical Health Informatics",
-    "instructors": "Sunghoon Lee",
-    "description": "This course aims to introduce the fundamentals of Clinical Health Informatics to prepare students as forerunners of the future of digital health care systems. More specifically, this course aims to teach students the fundamentals of and tools for quantitative analysis of clinical health data and the practical application of the tools on various health data. The detailed components of the course are as follows. Following an overview of the clinical health informatics industry, the course covers a broad range of introductory topics, including the structure of current health care systems, types of health data, the theory and practical use of quantitative analytic methodologies, and ethics related to healthcare. More specifically, this course will introduce key health informatics technologies and standards, including electronic health records, medical claims data, imaging data, free-text clinical notes, patient-reported outcomes, traditional and machine learning-based analytic algorithms, data visualization, and clinical research and experimental procedures. Note, however, that the course is not designed to introduce new types of machine learning or artificial intelligence algorithms for health-related data. This course is taught in the same classroom with students from COMPSCI 524. However, students enrolled in INFO 324 will be evaluated independently of students from COMPSCI 524. This course fulfills a concentration core requirement for the Health and Life Sciences track, and it can be used to fulfill an elective requirement for the Data Science concentration of the Informatics major. Open to INFORM majors. Prerequisite: Prerequisite: INFO 248 (or STATISTIC 315;515 or COMPSCI 240) with a grade of C or better. 4 credits.",
-    "prerequisites": "Prerequisite: INFO 248 (or STATISTIC 315;515 or COMPSCI 240) with a grade of C or better",
-    "credits": "4",
-    "frequency": null
-  },
-  {
-    "code": "INFO 348",
-    "title": "Data Analytics with Python",
-    "instructors": "Jayant Taneja",
-    "description": "The modern world is awash with data, and making sense of it requires specialized skills. This course will expose students to commonly used data analytics techniques. Topics include the acquisition, manipulation, and transformation of structured data, exploratory data analysis, data visualization, and predictive modeling. Students in this course will learn and use the Python programming language and tools for working with data. Analysis will be performed using real data sets. Does not count as a CS Elective (BA or BS). Satisfies one of the Data Science Concentration requirements and counts as an elective for the Health and Life Sciences Concentration for the Informatics major. Open to INFORM majors. Prerequisite: INFO 248 and CICS 160 (or INFO 190T or COMPSCI 186 or 187), both with a grade of C or better. 3 credits.",
-    "prerequisites": "INFO 248 and CICS 160 (or INFO 190T or COMPSCI 186 or 187), both with a grade of C or better",
-    "credits": "3",
-    "frequency": null
-  },
-  {
-    "code": "INFO 390C",
-    "title": "Introduction to Computational Biology and Bioinformatics",
-    "instructors": "Anna Green",
-    "description": "This course is designed to provide Informatics students with a broad, practical introduction to the field of computational biology and bioinformatics. The course will discuss at a high level the models and algorithms used to analyze biological sequence data, as well as practical applications and data analysis. Background in biology is not assumed. The primary focus of the course will be analysis of genomic data, including sequence alignment, genome assembly, genome annotation, phylogeny construction, mutation effect prediction, population genetics, RNA-seq data analysis, and genotype-phenotype association studies. Throughout the course, we will emphasize the unique challenges to working with biological data. Through lectures and hands-on programming problem sets, students will develop the necessary skills to tackle computational challenges in biology. This course counts as a CS Elective toward the CS Major and as an Elective toward the INFORM Major. Open to juniors and seniors in Computer Science or Informatics. Prerequisites: A grade of C or better in INFO 248 or a grade of C or better in both CICS 210 and COMPSCI 240 3 credits.",
-    "prerequisites": "A grade of C or better in INFO 248 or a grade of C or better in both CICS 210 and COMPSCI 240 3 credits",
-    "credits": "3",
-    "frequency": null
-  },
-  {
     "code": "CICS 291S",
     "title": "Seminar - CICS Second Year Pathways",
     "instructors": "Erfan Entezami",
@@ -1123,23 +1060,5 @@
     "prerequisites": "CS MAJORS: CICS 210 (or COMPSCI 187) with a grade of C or better (or COMPSCI 345 with a grade of B or better); INFORM MAJORS: INFO 248 and CICS 160 (previously INFO 190T or COMPSCI 186 or COMPSCI 187), all with a grade of C or better (or COMPSCI 345 with a grade of B or better)",
     "credits": "1",
     "frequency": null
-  },
-  {
-    "code": "INFO 490PI",
-    "title": "Personal Health Informatics",
-    "instructors": "Ravi Karkar",
-    "description": "This course will cover the design of personal health and wellness technologies. Using the personal health informatics model, we will learn various challenges in designing technologies for personal health data collection (e.g., step count, heart rate, or food intake etc.), integration, self-reflection, and behavior change. Going further, students will understand design issues in sharing personal health data and discuss design guidelines for collaborative data collection, reflection, and care. It is difficult to create health technologies that can successfully be integrated into people s daily life due to many obstacles in individuals data collection, integration, self-reflection, and sharing practices. Understanding these challenges is an important part of designing Health Technologies. Therefore, this course will cover HCI and design thinking methods that students can leverage to understand the adoption and use of Health Technologies and to design effective Health Technologies. Moreover, visualizations facilitate people to gain insights from their data, so we will cover common visualization approaches used in the personal data contexts. Students will apply the design issues taught during lecture to a team-based semester-long personal health application design project. This course satisfies the IE requirement for Informatics majors and it also counts as an elective for all concentrations of the Informatics major. Prerequisite: INFO 248 (or COMPSCI 240) and CICS 210 (or COMPSCI 186 or COMPSCI 187)all with a grade of C or better. 4 credits.",
-    "prerequisites": "INFO 248 (or COMPSCI 240) and CICS 210 (or COMPSCI 186 or COMPSCI 187)all with a grade of C or better",
-    "credits": "4",
-    "frequency": "Spring"
-  },
-  {
-    "code": "INFO H490PI",
-    "title": "Honors Colloquium for Personal Health Informatics",
-    "instructors": "Ravi Karkar",
-    "description": "This colloquium will dive deeper into issues related to design of personal health technologies. You will study examples of existing platforms, read relevant publications, and will produce a critical reflection on the state and future direction of the field.",
-    "prerequisites": "N/A",
-    "credits": "N/A",
-    "frequency": "Spring"
   }
 ]
