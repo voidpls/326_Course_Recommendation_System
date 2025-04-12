@@ -48,3 +48,49 @@
     margin-bottom: 20px; /* or 2rem, 30px, etc. */
     border-bottom: 1px solid #ccc; /* optional, for visual separation */
 }
+
+.prereq-button {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    font: inherit;
+}
+.prereq-button:hover {
+    color: #ffffff;
+}
+
+.rmp-link {
+    color: #007bff;
+    text-decoration: underline;
+}
+.rmp-link:hover {
+    color: #0056b3;
+}
+
+#course-details-filters {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+#course-details-filters h4 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+#course-details-filters label {
+    display: block;
+    margin: 2px 0;
+}
+
+#course-details-filters button {
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 5px 8px;
+    cursor: pointer;
+}
