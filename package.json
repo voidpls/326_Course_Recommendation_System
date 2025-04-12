@@ -1,0 +1,24 @@
+{
+  "name": "326_course_recommendation_system",
+  "version": "1.0.0",
+  "description": "The user will input the courses they have already taken, and optionally any academic or career interests they have, and the app will recommend future courses they might be interested in. The recommendations will also consider prerequisite/eligibility requirements to ensure only available courses are suggested. A visual CS major course progress map will show completed courses, current courses, and suggested future courses to help students plan their academic path.",
+  "homepage": "https://github.com/lhking1122/326_Course_Recommendation_System#readme",
+  "bugs": {
+    "url": "https://github.com/lhking1122/326_Course_Recommendation_System/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lhking1122/326_Course_Recommendation_System.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "api/server.js",
+  "scripts": {
+    "start": "node api/server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {}
+}
