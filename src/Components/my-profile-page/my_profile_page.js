@@ -163,6 +163,49 @@ function setupProfilePage() {
         hiddenInput.value = selectedInterests.join(',');
     }
 
+    // Input validation
+    const nameInput = document.getElementById('my-profile-page-name');
+    const emailInput = document.getElementById('my-profile-page-email');
+    const phoneInput = document.getElementById('my-profile-page-phone');
+    const gradYearInput = document.getElementById('my-profile-page-grad_year');
+
+    // Validate name (only letters and spaces allowed)
+    nameInput.addEventListener('blur', function () {
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        if (!nameRegex.test(this.value.trim())) {
+            alert('Invalid name. Please enter only letters and spaces.');
+            this.focus();
+        }
+    });
+
+    // Validate email
+    emailInput.addEventListener('blur', function () {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.value.trim())) {
+            alert('Invalid email format. Please enter a valid email.');
+            this.focus();
+        }
+    });
+
+    // Validate phone (only digits allowed)
+    phoneInput.addEventListener('blur', function () {
+        const phoneRegex = /^\d+$/;
+        if (!phoneRegex.test(this.value.trim())) {
+            alert('Invalid phone number. Please enter only digits.');
+            this.focus();
+        }
+    });
+
+    // Validate graduation year (within the next 10 years)
+    gradYearInput.addEventListener('blur', function () {
+        const currentYear = new Date().getFullYear();
+        const gradYear = parseInt(this.value.trim(), 10);
+        if (isNaN(gradYear) || gradYear < currentYear || gradYear > currentYear + 10) {
+            alert(`Invalid graduation year. Please enter a year between ${currentYear} and ${currentYear + 10}.`);
+            this.focus();
+        }
+    });
+
     // Load saved profile data when page loads
     loadProfileData().then(savedData => {
         if (savedData) {
