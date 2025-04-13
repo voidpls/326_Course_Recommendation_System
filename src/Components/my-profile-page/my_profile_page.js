@@ -253,12 +253,47 @@ function setupProfilePage() {
         e.preventDefault();
 
         // Get form values
-        const name = document.getElementById('my-profile-page-name').value;
-        const email = document.getElementById('my-profile-page-email').value;
-        const phone = document.getElementById('my-profile-page-phone').value;
-        const gradYear = document.getElementById('my-profile-page-grad_year').value;
-        const contact = document.getElementById('my-profile-page-contact').value;
+        const name = document.getElementById('my-profile-page-name').value.trim();
+        const email = document.getElementById('my-profile-page-email').value.trim();
+        const phone = document.getElementById('my-profile-page-phone').value.trim();
+        const gradYear = document.getElementById('my-profile-page-grad_year').value.trim();
+        const contact = document.getElementById('my-profile-page-contact').value.trim();
         const interests = hiddenInput.value;
+
+        // Input validation
+        const nameRegex = /^[a-zA-Z\s]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\d+$/;
+        const currentYear = new Date().getFullYear();
+        const gradYearInt = parseInt(gradYear, 10);
+
+        let errors = [];
+
+        if (!nameRegex.test(name)) {
+            errors.push('Invalid name: Please enter only letters and spaces.');
+        }
+
+        if (!emailRegex.test(email)) {
+            errors.push('Invalid email: Please enter a valid email format.');
+        }
+
+        if (!phoneRegex.test(phone)) {
+            errors.push('Invalid phone number: Please enter only digits.');
+        }
+
+        if (isNaN(gradYearInt) || gradYearInt < currentYear || gradYearInt > currentYear + 10) {
+            errors.push(`Invalid graduation year: Please enter a year between ${currentYear} and ${currentYear + 10}.`);
+        }
+
+        if (!contact) {
+            errors.push('Preferred contact method cannot be empty.');
+        }
+
+        // If there are errors, show them in an alert
+        if (errors.length > 0) {
+            alert('Please fix the following errors:\n\n' + errors.join('\n'));
+            return;
+        }
 
         // Prepare data to save
         const profileData = {
