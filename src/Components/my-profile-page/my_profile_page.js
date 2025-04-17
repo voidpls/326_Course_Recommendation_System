@@ -305,14 +305,21 @@ function setupProfilePage() {
             interests
         };
 
-        // Save to IndexedDB
-        saveProfileData(profileData).then(() => {
-            // Update summary display
-            updateProfileSummary(profileData);
-            alert('Profile updated successfully!');
+        // Send POST request to save data
+        fetch('/profile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(profileData)
+        }).then(response => {
+            if (response.ok) {
+                alert('Profile saved successfully!');
+            } else {
+                alert('Failed to save profile.');
+            }
         }).catch(error => {
-            console.error('Failed to save profile:', error);
-            alert('Failed to save profile. Please try again.');
+            console.error('Error saving profile:', error);
         });
     });
 
