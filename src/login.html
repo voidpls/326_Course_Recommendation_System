@@ -17,6 +17,8 @@
         <input type="password" id="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
+    <button class="guest-button" onclick="continueAsGuest()">Continue as Guest</button>
+    <button class="create-account-button" onclick="goToCreateAccount()">Create Account</button>
 </div>
 
 <script>
@@ -26,9 +28,27 @@
         const password = document.getElementById("password").value.trim();
 
         if (username && password) {
-            // No alert, just directly redirect to homepage
+            // Save username and password locally
+            localStorage.setItem("user-username", username);
+            localStorage.setItem("user-password", password);
+
+            // Redirect to homepage
             window.location.href = "index.html";
         }
+    }
+
+    function continueAsGuest() {
+        // Create a random guest id if not already stored
+        if (!localStorage.getItem("guest-id")) {
+            const randomId = "guest_" + Math.random().toString(36).substring(2, 10);
+            localStorage.setItem("guest-id", randomId);
+        }
+        window.location.href = "index.html";
+    }
+
+    function goToCreateAccount() {
+        // Redirect to create account page (you can create this page later)
+        window.location.href = "create_account.html";
     }
 </script>
 

@@ -325,4 +325,22 @@ function setupProfilePage() {
 
     // Initialize
     updateSelectedTags();
+
+    // 🛠 Attach logout functionality
+
+    const logoutButton = document.getElementById('logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            if (confirm("Are you sure you want to log out?")) {
+                // Clear stored login info
+                localStorage.removeItem("user-username");
+                localStorage.removeItem("user-password");
+                localStorage.removeItem("guest-id");
+
+                // Redirect to login page
+                window.location.href = "login.html";
+            }
+        });
+    }
 }
+
