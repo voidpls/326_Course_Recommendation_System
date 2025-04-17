@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="Components/login-page/login.css">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Course Recommender</title>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h1>Login</h1>
+    <form onsubmit="login(event)">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<script>
+    function login(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (username && password) {
+            // No alert, just directly redirect to homepage
+            window.location.href = "index.html";
+        }
+    }
+</script>
+
+</body>
+</html>

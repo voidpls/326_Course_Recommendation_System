@@ -10,8 +10,13 @@
 
     <!-- Any JavaScript files should be included here!!! -->
     <script src="Components/course-details-page/course_details_page.js"></script>
-    <script src="Components/course_progress_chart/course_progress_chart.js"></script>
-    <script type="module" src="Components/my-profile-page/my_profile_page.js"></script>
+    <script type="module" src="Components/course_progress_chart/course_progress_chart.js"></script>
+    <script src="Components/my-profile-page/my_profile_page.js"></script>
+    <script src="Components/course-review-page/course_review_page.js" type="module"></script>
+    <script type="module">
+        import {loadCourseReviewPage} from "./Components/course-review-page/course_review_page.js"
+        window.loadCourseReviewPage = loadCourseReviewPage
+    </script>
 </head>
 
 <body>
@@ -178,7 +183,7 @@
             .then(data => {
                 divCourseDetailsPage.innerHTML = data;
                 divCourseDetailsPage.style.display = "none";
-                fetch("/src/Services/course-details-page/sorted_full_course_list.json")
+                fetch("./Services/course-details-page/sorted_full_course_list.json")
                     .then(response => response.json())
                     .then(data => {
                         courses = data;
@@ -206,6 +211,7 @@
             .then(data => {
                 divCourseReviewsPage.innerHTML = data;
                 divCourseReviewsPage.style.display = "none";
+                window.loadCourseReviewPage();
             });
 
 

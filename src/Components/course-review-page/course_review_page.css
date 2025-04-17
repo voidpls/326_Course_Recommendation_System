@@ -51,14 +51,16 @@ main{
     align-content: center;
 }
 
-
-
 .select-container{
     background-color: #dedce0;
-    width: 48%;
+    width: 50%;
     height: 72.5vh;
-    margin-left: 5%;
-    overflow-y: scroll;
+    margin-left: 3%;
+}
+
+.prerequisites{
+    margin-top: 15px;
+    margin-left: 25px;
 }
 
 .description{
@@ -102,4 +104,152 @@ main{
 
 .paragraph{
     margin-left: 25px;
+}
+
+.course-item-selected{
+    background-color: #dedce0;
+    height: 20%;
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+}
+
+.review-container{
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.dropdown {
+border: 1px solid #c1c2c5;
+border-radius: 12px;
+transition: all 300ms;
+display: flex;
+flex-direction: column;
+min-height: 58px;
+background-color: #de5959;
+overflow: hidden;
+position: relative;
+inset-inline: auto;
+margin-right: 25px;
+margin-left: 25px;
+}
+.dropdown input:where(:checked) ~ .list {
+opacity: 1;
+transform: translateY(-3rem) scale(1);
+transition: all 500ms ease;
+margin-top: 32px;
+padding-top: 4px;
+margin-bottom: -32px;
+}
+.dropdown input:where(:not(:checked)) ~ .list {
+opacity: 0;
+transform: translateY(3rem);
+margin-top: -100%;
+user-select: none;
+height: 0px;
+max-height: 0px;
+min-height: 0px;
+pointer-events: none;
+transition: all 500ms ease-out;
+}
+.trigger {
+cursor: pointer;
+list-style: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+user-select: none;
+font-weight: 600;
+color: inherit;
+width: 100%;
+display: flex;
+align-items: center;
+flex-flow: row;
+gap: 1rem;
+padding: 1rem;
+height: max-content;
+position: relative;
+z-index: 99;
+border-radius: inherit;
+background-color: #de5959;
+}
+.sr-only {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border-width: 0;
+}
+.dropdown input:where(:checked) + .trigger {
+margin-bottom: 1rem;
+}
+.dropdown input:where(:checked) + .trigger:before {
+rotate: 90deg;
+transition-delay: 0ms;
+}
+.dropdown input:where(:checked) + .trigger::after {
+content: "Close";
+}
+
+.trigger:before,
+.trigger::after {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.trigger:before {
+content: "›";
+rotate: -90deg;
+width: 17px;
+height: 17px;
+color: #262626;
+border-radius: 2px;
+font-size: 26px;
+transition: all 350ms ease;
+transition-delay: 85ms;
+}
+.trigger::after {
+content: "Add Review";
+}
+.list {
+height: 100%;
+max-height: 20rem;
+width: calc(100% - calc(var(--w-scrollbar) / 2));
+display: inline;
+overflow: hidden auto;
+gap: 1rem;
+padding: 0 1rem;
+margin-right: -8px;
+--w-scrollbar: 8px;
+}
+
+.webkit-scrollbar::-webkit-scrollbar {
+width: var(--w-scrollbar);
+height: var(--w-scrollbar);
+border-radius: 9999px;
+}
+.webkit-scrollbar::-webkit-scrollbar-track {
+background: #0000;
+}
+.webkit-scrollbar::-webkit-scrollbar-thumb {
+background: #0000;
+border-radius: 9999px;
+}
+.webkit-scrollbar:hover::-webkit-scrollbar-thumb {
+background: #c1c2c5;
+}
+
+.info{
+    width: 150px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+.desc{
+    width: 60%;
+    height: 150px;
 }
