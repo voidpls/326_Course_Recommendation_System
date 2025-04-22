@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const ctrl = require('../controllers/course_profile_controller.js');
 
-// // GET /course-details/:courseId
-// router.get('/:courseId', ctrl.getDetails);
+// GET /course-profile/:userId
+router.get('/:userId', ctrl.getProfile);
 
-// // POST /course-details
-// router.post('/', ctrl.createDetails);
+// POST /course-profile
+router.post('/', ctrl.createDetails);
 
-// // PUT /course-details/:courseId
-// router.put('/:courseId', ctrl.updateDetails);
+// PUT /course-profile/:userId
+router.put('/:userId', ctrl.updateDetails);
 
-// // DELETE /course-details/:courseId
-// router.delete('/:courseId', ctrl.deleteDetails);
+// DELETE /course-profile/:userId
+router.delete('/:userId', ctrl.deleteDetails);
 
 module.exports = router;
