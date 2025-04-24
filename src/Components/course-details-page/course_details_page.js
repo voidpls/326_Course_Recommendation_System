@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+let lastScrollPosition = 0;
+
 function displayCourses(list = courses, addBackButton = false, isFromFilter = false) {
     const courseList = document.getElementById("course-details-courseList");
     if (!courseList) return;
@@ -53,9 +55,17 @@ function displayCourses(list = courses, addBackButton = false, isFromFilter = fa
         const backBtn = document.createElement("button");
         backBtn.textContent = "⬅️ Back";
         backBtn.id = "back-button";
+
         backBtn.addEventListener("click", () => {
             displayCourses(courses);
+
+            // ✨ After rendering, restore scroll position
+            window.scrollTo({
+                top: lastScrollPosition,
+                behavior: "instant" // or "smooth" if you prefer
+            });
         });
+
         courseList.appendChild(backBtn);
     }
 
@@ -102,8 +112,7 @@ function displayCourses(list = courses, addBackButton = false, isFromFilter = fa
 function attachPrereqHandlers() {
     document.querySelectorAll(".prereq-button").forEach(btn => {
         btn.addEventListener("click", () => {
-            const courseCode = btn.getAttribute("data-code").toLowerCase();
-            document.getElementById("course-details-searchBox").value = courseCode;
+            document.getElementById("course-details-searchBox").value = btn.getAttribute("data-code").toLowerCase();
             document.getElementById("course-details-searchBtn").click();
         });
     });
@@ -120,6 +129,7 @@ function setupSearch() {
 
     searchBtn.addEventListener("click", () => {
         const query = searchBox.value.trim().toLowerCase();
+        lastScrollPosition = window.scrollY || document.documentElement.scrollTop;
         displayCourses(
             query === "" ? courses : courses.filter(course => {
                 const code = course.code.toLowerCase();
