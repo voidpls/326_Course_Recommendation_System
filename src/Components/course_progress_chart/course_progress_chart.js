@@ -1,3 +1,5 @@
+// const { raw } = require("express");
+
 // indexeddb constants
 const DB_NAME = 'courseProgressDB';
 const STORE_NAME = 'courseData';
@@ -48,6 +50,17 @@ async function changeCourse(btns, btn) {
 }
 
 async function initFlowchart() {
+    // get state from server
+
+    const rawRes = await fetch('/course-progress/1', {
+        method: "GET",
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    const res = await rawRes.json()
+    console.log(res)
+
     // load saved state when page loads
     await loadFormState();    
 
@@ -119,17 +132,53 @@ async function submitForm() {
 
     console.log(selectedCourses);
 
-    
     // display results
     const resultsList = document.getElementById('course-progress-chart-results-list');
     resultsList.innerHTML = selectedCourses.join(', ')
     
+    const formInputs = getFormInputs()
+    const rawRes = await fetch('/course-progress', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: 1,
+            courseProgress: formInputs,
+            courses: selectedCourses
+        })
+    })
+    const res = await rawRes.json()
+    console.log(res)
+
+    resultsList.innerHTML =  resultsList.innerHTML + 
+        '<br><br>' +
+        'Server response:<br>' + 
+        JSON.stringify(res) 
     document.getElementById('course-progress-chart-results').style.display = 'block';
 }
 
 async function toggleSelection(courseBox) {
     courseBox.classList.toggle('selected');
     await saveFormState(); // save form state
+}
+
+function getFormInputs() {
+    // save selected course boxes
+    const selectedBoxes = document.querySelectorAll('.course-box.selected');
+    const selectedIds = Array.from(selectedBoxes).map(box => box.id);
+    
+    // save input values
+    const inputs = document.querySelectorAll('.text-input');
+    const inputValues = {};
+    inputs.forEach(input => {
+        if (input.value.trim() !== '') {
+            inputValues[input.id] = input.value;
+        }
+    });
+
+    return { selectedIds, inputValues }
 }
 
 async function saveFormState() {
@@ -139,18 +188,7 @@ async function saveFormState() {
         const transaction = db.transaction([STORE_NAME], 'readwrite');
         const store = transaction.objectStore(STORE_NAME);
 
-        // save selected course boxes
-        const selectedBoxes = document.querySelectorAll('.course-box.selected');
-        const selectedIds = Array.from(selectedBoxes).map(box => box.id);
-        
-        // save input values
-        const inputs = document.querySelectorAll('.text-input');
-        const inputValues = {};
-        inputs.forEach(input => {
-            if (input.value.trim() !== '') {
-                inputValues[input.id] = input.value;
-            }
-        });
+        const { selectedIds, inputValues } = getFormInputs()
 
         store.put({ id: 'selectedCourses', data: selectedIds });
         store.put({ id: 'courseInputs', data: inputValues });
