@@ -1,4 +1,4 @@
-export function loadCourseReviewPage() {
+window.loadCourseReviewPage = function(){
     loadCourses()
 }
 
