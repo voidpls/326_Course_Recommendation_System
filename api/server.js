@@ -1,15 +1,162 @@
-const express = require("express")
+const express = require("express");
+const session = require("express-session");
 const app = express()
 const path = require('path')
+const sqlite3   = require("sqlite3").verbose();
+const bcrypt  = require('bcrypt');
 
 const PORT = 3000
 
 app.use(express.static(path.join(__dirname, '../src')))
 app.use(express.json())
 
+// ——— Session middleware ———
+app.use(session({
+    name: 'sid',                     // cookie name
+    secret: 'your-super-secret',     // change to a strong secret
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 1 day
+}));
+
+// —————————————
+// 2️⃣ Database setup (users.db in project root)
+// —————————————
+const db = new sqlite3.Database(path.join(__dirname, 'users.db'), err => {
+    if (err) console.error("❌ Failed to open users.db:", err);
+    else       console.log("✅ Connected to users.db");
+});
+
+// Create users table if it doesn't exist
+db.run(`
+  CREATE TABLE IF NOT EXISTS users (
+    id       INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT    UNIQUE,
+    password TEXT
+  )
+`, err => {
+    if (err) console.error("❌ Failed to create users table:", err);
+});
+
+// —————————————
+// 3️⃣ Signup endpoint
+// —————————————
+
+// Replace your existing /api/signup handler with this:
+
+app.post('/api/signup', (req, res) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+        return res.status(400).json({
+            success: false,
+            message: 'Username and password are required.'
+        });
+    }
+
+    // 1️⃣ Check if the username is already taken
+    db.get(
+        `SELECT 1 FROM users WHERE username = ?`,
+        [username],
+        (err, row) => {
+            if (err) {
+                console.error('DB error on SELECT:', err);
+                return res.status(500).json({
+                    success: false,
+                    message: 'Internal server error.'
+                });
+            }
+
+            if (row) {
+                // Already exists → bail out
+                return res.status(400).json({
+                    success: false,
+                    message: 'Username already taken.'
+                });
+            }
+
+            // 2️⃣ Not taken yet → hash & insert
+            bcrypt
+                .hash(password, 10)
+                .then(hash => {
+                    db.run(
+                        `INSERT INTO users (username, password) VALUES (?, ?)`,
+                        [username, hash],
+                        function (err) {
+                            if (err) {
+                                console.error('DB error on INSERT:', err);
+                                return res.status(500).json({
+                                    success: false,
+                                    message: 'Could not create account.'
+                                });
+                            }
+                            return res.json({
+                                success: true,
+                                message: 'Account created.'
+                            });
+                        }
+                    );
+                })
+                .catch(e => {
+                    console.error('Hashing error:', e);
+                    res.status(500).json({
+                        success: false,
+                        message: 'Could not process your request.'
+                    });
+                });
+        }
+    );
+});
+
+
+// —————————————
+// 4️⃣ Login endpoint
+// —————————————
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+    db.get(
+        `SELECT password FROM users WHERE username = ?`,
+        [username],
+        async (err, row) => {
+            if (err) {
+                console.error("DB error on SELECT:", err);
+                return res.status(500).json({
+                    success: false,
+                    message: 'Internal server error.'
+                });
+            }
+            if (!row) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'User not found.'
+                });
+            }
+            const match = await bcrypt.compare(password, row.password);
+            if (match) {
+                // ✅ store login state
+                req.session.user = { username };
+                res.json({ success: true });
+            } else {
+                res.status(400).json({
+                    success: false,
+                    message: 'Invalid password.'
+                });
+            }
+        }
+    );
+});
+// —————————————
+
+// 1️⃣ custom root handler
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../src/index.html'))
-})
+    if (req.session.user) {
+        res.sendFile(path.join(__dirname, '../src/index.html'));
+    } else {
+        res.sendFile(path.join(__dirname, '../src/login.html'));
+    }
+});
+
+// 2️⃣ then serve all other static assets
+app.use(express.static(path.join(__dirname, '../src')));
 
 // import routers
 const detailsRouter  = require('./routes/course_details')
