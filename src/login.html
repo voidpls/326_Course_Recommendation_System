@@ -1,56 +1,118 @@
-<link rel="stylesheet" href="Components/login-page/login.css">
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Course Recommender</title>
+    <title>Course Recommender</title>
+    <link rel="stylesheet" href="./Components/login-page/login.css">
+    <style>
+        /* helper to hide inactive view */
+        .view { display: none; }
+        .view.active { display: block; }
+    </style>
 </head>
-
 <body>
 
-<div class="login-container">
+<!-- LOGIN VIEW -->
+<div id="login-view" class="login-container view active">
     <h1>Login</h1>
-    <form onsubmit="login(event)">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
+    <form id="login-form">
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
-    <button class="guest-button" onclick="continueAsGuest()">Continue as Guest</button>
-    <button class="create-account-button" onclick="goToCreateAccount()">Create Account</button>
+    <button class="guest-button" id="guest-btn">Continue as Guest</button>
+    <button class="create-account-button" id="show-create-btn">Create Account</button>
+</div>
+
+<!-- CREATE ACCOUNT VIEW -->
+<div id="create-view" class="login-container view">
+    <h1>Create Account</h1>
+    <form id="signup-form">
+        <input type="text" id="create-username" placeholder="Username" required>
+        <input type="password" id="create-password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+    <button class="guest-button" id="guest2-btn">Continue as Guest</button>
+    <button class="back-login-button" id="back-login-btn">Back to Login</button>
 </div>
 
 <script>
-    function login(event) {
-        event.preventDefault();
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
-
-        if (username && password) {
-            // Save username and password locally
-            localStorage.setItem("user-username", username);
-            localStorage.setItem("user-password", password);
-
-            // Redirect to homepage
-            window.location.href = "index.html";
-        }
+    const views = {
+        login: document.getElementById('login-view'),
+        create: document.getElementById('create-view')
+    };
+    function show(view) {
+        Object.values(views).forEach(v => v.classList.remove('active'));
+        views[view].classList.add('active');
     }
 
-    function continueAsGuest() {
-        // Create a random guest id if not already stored
-        if (!localStorage.getItem("guest-id")) {
-            const randomId = "guest_" + Math.random().toString(36).substring(2, 10);
-            localStorage.setItem("guest-id", randomId);
-        }
-        window.location.href = "index.html";
-    }
+    // nav buttons
+    document.getElementById('show-create-btn')
+        .addEventListener('click', () => show('create'));
+    document.getElementById('back-login-btn')
+        .addEventListener('click', () => show('login'));
+    document.querySelectorAll('#guest-btn, #guest2-btn')
+        .forEach(btn => btn.addEventListener('click', () => {
+            if (!localStorage.getItem('guest-id')) {
+                localStorage.setItem('guest-id',
+                    'guest_'+Math.random().toString(36).slice(2));
+            }
+            // redirect to home
+            window.location.href = 'index.html';
+        }));
 
-    function goToCreateAccount() {
-        // Redirect to create account page (you can create this page later)
-        window.location.href = "create_account.html";
-    }
+    // login form
+    document.getElementById('login-form')
+        .addEventListener('submit', async e => {
+            e.preventDefault();
+
+            // grab the credentials
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            try {
+                // POST to your login endpoint (match the path your server uses)
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json();
+                console.log('login response', res.status, data);
+
+                if (data.success) {
+                    // on success, go to your protected page
+                    window.location.href = 'index.html';
+                } else {
+                    // show the server-sent error message
+                    alert('Login failed: ' + (data.message || res.statusText));
+                }
+            } catch (err) {
+                console.error('Fetch error:', err);
+                alert('Login error: ' + err.message);
+            }
+        });
+
+    // signup form
+    document.getElementById('signup-form')
+        .addEventListener('submit', async e => {
+            e.preventDefault();
+            const username = document.getElementById('create-username').value;
+            const password = document.getElementById('create-password').value;
+            const res = await fetch('/api/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                alert('Account created! You can now log in.');
+                show('login');
+            } else {
+                alert('Error: ' + data.message);
+            }
+        });
 </script>
-
 </body>
 </html>
