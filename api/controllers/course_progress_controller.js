@@ -13,23 +13,42 @@ exports.getProgress = async (req, res, next) => {
     let { userId } = req.params;
     try {
         userId = parseInt(userId)
-        if (!memoryStore[userId]) res.json(null)
+        if (!memoryStore[userId]) 
+          return res.json({success: false, error: "This user ID does not exist"})
         
-        res.json(memoryStore[userId])
+        res.status(200).json({ ...memoryStore[userId], success: true} )
     } catch (err) {
-        next(err);
+        res.status(500).json({success: false, error: err})
+        next(err)
     }
-};
+}
 
 exports.setProgress = async (req, res, next) => {
-  let { userId, courseProgress, courses } = req.body
-  try {
-    console.log(req.body)
+    let { userId, courseProgress, courses } = req.body
+    try {
+        console.log(req.body)
 
-    userId = parseInt(userId)
-    memoryStore[userId] = { userId, courseProgress, courses }
-    res.json({ userId, courseProgress, courses });
-  } catch (err) {
-    next(err)
-  }
+        userId = parseInt(userId)
+        memoryStore[userId] = { userId, courseProgress, courses }
+        // res.json({ userId, courseProgress, courses });
+        res.status(200).json({success: true})
+    } catch (err) {
+        res.status(500).json({success: false, error: err})
+        next(err)
+    }
+}
+
+exports.deleteProgress = async (req, res, next) => {
+    let { userId } = req.params;
+    try {
+        userId = parseInt(userId)
+        if (!memoryStore[userId]) 
+            return res.json({success: false, error: "This user ID does not exist"})
+        
+        delete memoryStore[userId]
+        res.status(200).json({success: true})
+    } catch (err) {
+        res.status(500).json({success: false, error: err})
+        next(err)
+    }
 }
