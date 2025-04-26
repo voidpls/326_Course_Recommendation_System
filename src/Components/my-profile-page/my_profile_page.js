@@ -35,25 +35,65 @@ function openDatabase() {
     });
 }
 
-// Save profile data to IndexedDB
+// Save profile data using POST request and IndexedDB
 function saveProfileData(data) {
-    return openDatabase().then(db => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(STORE_NAME, 'readwrite');
-            const store = transaction.objectStore(STORE_NAME);
-            
-            // Use fixed ID since we're only storing one profile
-            const request = store.put({ id: 1, ...data });
-            
-            request.onerror = (event) => {
-                console.error('Save error:', event.target.error);
-                reject(event.target.error);
-            };
-            
-            request.onsuccess = () => {
-                resolve();
-            };
+    return fetch('/course-profile', { // Updated endpoint
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to save profile.');
+        }
+        return response.json();
+    }).then(savedData => {
+        // Save to IndexedDB after successful server response
+        return openDatabase().then(db => {
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(STORE_NAME, 'readwrite');
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.put({ id: 1, ...data }); // Use fixed ID for simplicity
+
+                request.onerror = (event) => {
+                    console.error('IndexedDB save error:', event.target.error);
+                    reject(event.target.error);
+                };
+
+                request.onsuccess = () => {
+                    console.log('Profile saved to IndexedDB successfully.');
+                    resolve(savedData);
+                };
+            });
         });
+    });
+}
+
+// Update profile data using PUT request
+function updateProfileData(data) {
+    return fetch('/course-profile/1', { // Updated endpoint
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to update profile.');
+        }
+        return response.json();
+    });
+}
+
+// Delete profile data using DELETE request
+function deleteProfileData() {
+    return fetch('/course-profile/1', { // Updated endpoint
+        method: 'DELETE'
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete profile.');
+        }
     });
 }
 
@@ -305,22 +345,17 @@ function setupProfilePage() {
             interests
         };
 
-        // Send POST request to save data
-        fetch('/profile', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(profileData)
-        }).then(response => {
-            if (response.ok) {
+        // Save data to server and IndexedDB
+        saveProfileData(profileData)
+            .then(() => {
                 alert('Profile saved successfully!');
-            } else {
+                // Update the profile summary on the page
+                updateProfileSummary(profileData);
+            })
+            .catch(error => {
+                console.error('Error saving profile:', error);
                 alert('Failed to save profile.');
-            }
-        }).catch(error => {
-            console.error('Error saving profile:', error);
-        });
+            });
     });
 
     // Initialize
