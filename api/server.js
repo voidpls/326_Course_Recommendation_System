@@ -5,6 +5,7 @@ const path = require('path')
 const sqlite3   = require("sqlite3").verbose();
 const bcrypt  = require('bcrypt');
 
+
 const PORT = 3000
 
 app.use(express.static(path.join(__dirname, '../src')))
@@ -163,12 +164,15 @@ const detailsRouter  = require('./routes/course_details')
 const progressRouter = require('./routes/course_progress')
 const reviewsRouter  = require('./routes/course_reviews')
 const profileRouter  = require('./routes/course_profile')
+const recommendationsRouter  = require('./routes/recommendations')
+
 
 // mount routers
 app.use('/course-details', detailsRouter);
 app.use('/course-progress', progressRouter);
 app.use('/course-reviews', reviewsRouter);
 app.use('/course-profile', profileRouter);
+app.use('/recommendations', recommendationsRouter)
 
 // catch all 404
 app.use((req, res) => res.status(404).json({ error: 'Not found' }));
