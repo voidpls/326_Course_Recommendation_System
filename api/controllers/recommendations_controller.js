@@ -2,7 +2,7 @@ require('dotenv').config()
 const { GEMINI_API_KEY } = process.env
 const { GoogleGenAI, Type, createPartFromUri } = require("@google/genai")
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY })
-const completeCourseListPath = '/src/Services/course-details-page/complete_course_list.json'
+const completeCourseList = require('../../src/Services/course-details-page/complete_course_list.json')
 
 const memoryStore = {
     1: { 
@@ -36,29 +36,16 @@ function getPrompt(courses, userInterests) {
     const prompt = "Given the following courses taken, interests, and course description list, construct a list of 4-6 recommended courses for this student, along with a short reasoning. Make sure to check course prerequisites, if mentioned.\n" +
     `Courses taken: ${courses.join(', ')}\n` +
     `Interests: ${userInterests}\n` + 
-    "Course descriptions: ATTACHED\n" + 
-    "IMPORTANT NOTE: Responses are timed, so limit prose and stick to only the absolutely crucial analysis."
-   
+    "Course descriptions: ATTACHED BELOW\n" + 
+    "IMPORTANT NOTE: Responses are timed, so limit prose and stick to only the absolutely crucial analysis.\n\n" +
+    "COMPLETE COURSE LIST: \n" + 
+    JSON.stringify(completeCourseList)
+
     return prompt
 }
 
-function getUploadedJSON() {
-    let uploadedJSON;
-    return async () => {
-        if (uploadedJSON) return uploadedJSON
-        // const json = require(completeCourseListPath)
-        // console.log(json)
-        uploadedJson = await ai.files.upload({
-            file: completeCourseListPath,
-            config: {mimeType: 'application/json'} 
-        })
-        return uploadedJSON
-    }
-}
 
 async function queryLLM(prompt) {
-    const uploadedJSON = getUploadedJSON()
-
     const config = {
         responseMimeType: 'application/json',
         responseSchema: {
@@ -82,10 +69,12 @@ async function queryLLM(prompt) {
         },
       };
     
-    const myfile = await uploadedJSON()
     const model = 'gemini-2.5-flash-preview-04-17';
-    const contents = prompt + '\n\n' + createPartFromUri(myfile.uri, myfile.mimeType);
+    const contents = prompt //+ '\n\n' + createPartFromUri(myfile.uri, myfile.mimeType);
     const response = await ai.models.generateContent({model, config, contents})
-
-    return response
+    
+    if (response.candidates?.[0]?.content?.parts?.[0]?.text)
+      return response.candidates[0].content.parts[0].text
+    return null
 }
+    
