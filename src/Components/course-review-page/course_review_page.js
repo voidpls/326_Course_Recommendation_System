@@ -1,4 +1,4 @@
-export function loadCourseReviewPage() {
+window.loadCourseReviewPage = function(){
     loadCourses()
 }
 
@@ -81,15 +81,26 @@ function changeSelected(course){
     instructors.innerHTML = `Instructors: ${course.instructors}`
 }
 
-function removeReviews(){
-    console.log('reviews removed')
+async function removeReviews(){
+    let rawRes = await fetch('/course-reviews/review/1', { //1 is dummy val
+        method: 'DELETE'
+    })
+    let res = await rawRes.json()
+    console.log(res)
 }
 
-function loadReviews(){
-    console.log('reviews loaded')
+async function loadReviews(){
+    let rawRes = await fetch('/course-reviews/reviews/1', { //1 is dummy val
+        method: "GET",
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    let res = await rawRes.json()
+    console.log(res)
 }
 
-function addReview(){
+async function addReview(){
     let proffesor = document.getElementById("proffesor").value
     let attendance = document.getElementById("attendance").value
     let grade = document.getElementById("grade").value
@@ -116,5 +127,22 @@ function addReview(){
         </div>
     `
     reviewList.insertAdjacentElement("afterbegin", item)
+    
+    let rawRes = await fetch('/course-reviews/review', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            proffesor: proffesor,
+            attendance: attendance,
+            grade: grade,
+            textbook: textbook,
+            desc: desc
+        })
+    })
+    let res = await rawRes.json()
+    console.log(res)
     console.log( proffesor, attendance, grade, textbook, desc)
 }
