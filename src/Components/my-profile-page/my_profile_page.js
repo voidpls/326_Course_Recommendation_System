@@ -56,7 +56,7 @@ function loadProfileData() {
             return res.json();
         })
         .then(({ user, taken }) => ({
-            name:     user.username,
+            name:     user.name,
             email:    user.email,
             phone:    user.phone,
             gradYear: user.graduation_year,
