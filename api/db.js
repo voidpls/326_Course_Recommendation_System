@@ -20,31 +20,15 @@ db.serialize(() => {
                                              graduation_year  TEXT,
                                              interests        TEXT,
                                              preferred_contact TEXT,
+                                             courses          TEXT,    -- JSON.stringify array of codes
+                                             course_progress  TEXT,    -- JSON.stringify object
                                              created_at       DATETIME DEFAULT CURRENT_TIMESTAMP
         );
     `);
-
-    // courses
-    db.run(`
-        CREATE TABLE IF NOT EXISTS courses (
-                                               id         INTEGER PRIMARY KEY AUTOINCREMENT,
-                                               code       TEXT    UNIQUE NOT NULL,
-                                               title      TEXT    NOT NULL,
-                                               created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    `);
-
-    // user↔course join
-    db.run(`
-        CREATE TABLE IF NOT EXISTS user_courses (
-                                                    user_id     INTEGER NOT NULL,
-                                                    course_id   INTEGER NOT NULL,
-                                                    enrolled_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                                                    PRIMARY KEY (user_id, course_id),
-                                                    FOREIGN KEY (user_id)   REFERENCES users(id)   ON DELETE CASCADE,
-                                                    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
-        );
-    `);
+    db.run(`ALTER TABLE users ADD COLUMN name TEXT NOT NULL DEFAULT ''`, err => {
+        // ignore “duplicate column” errors:
+        if (err && !/duplicate column/.test(err.message)) console.error(err);
+    });
 });
 
 module.exports = db;
