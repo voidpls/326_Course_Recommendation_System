@@ -1,4 +1,5 @@
 let reviewData = {fake: 'data'}
+const db = require('../db');
 
 exports.getReviews = async (req, res, next) => {
   const { courseId } = req.params;  
@@ -10,13 +11,16 @@ exports.getReviews = async (req, res, next) => {
 };
 
 exports.createReview = async (req, res, next) => {
-  try {
-      review = req.body; 
-      reviewData = {review}
-      res.status(201).json({ message: 'Review created successfully', data: review });
-  } catch (err) {
-      next(err);
-  }
+  let review = req.body;
+  console.log(review)
+  db.run(
+    `INSERT INTO reviews (title, rating, professor, mand_attendance, grade, desc, user_id, course_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
+    [review.title, review.rating, review.professor, review.attendance, review.grade, review.desc, 1, 1],
+    function (err) {
+      if (err) return next(err);
+      res.json({success: true});
+    }
+  )
 };
 
 exports.deleteReview = async (req, res, next) => {
