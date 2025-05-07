@@ -1,3 +1,4 @@
+<!-- src/login.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,6 @@
     <title>Course Recommender</title>
     <link rel="stylesheet" href="./Components/login-page/login.css">
     <style>
-        /* helper to hide inactive view */
         .view { display: none; }
         .view.active { display: block; }
     </style>
@@ -38,7 +38,7 @@
 
 <script>
     const views = {
-        login: document.getElementById('login-view'),
+        login:  document.getElementById('login-view'),
         create: document.getElementById('create-view')
     };
     function show(view) {
@@ -47,70 +47,67 @@
     }
 
     // nav buttons
-    document.getElementById('show-create-btn')
-        .addEventListener('click', () => show('create'));
-    document.getElementById('back-login-btn')
-        .addEventListener('click', () => show('login'));
-    document.querySelectorAll('#guest-btn, #guest2-btn')
+    document.getElementById('show-create-btn').addEventListener('click', () => show('create'));
+    document.getElementById('back-login-btn').addEventListener('click', () => show('login'));
+    document.querySelectorAll('#guest-btn,#guest2-btn')
         .forEach(btn => btn.addEventListener('click', () => {
             if (!localStorage.getItem('guest-id')) {
-                localStorage.setItem('guest-id',
-                    'guest_'+Math.random().toString(36).slice(2));
+                localStorage.setItem('guest-id','guest_' + Math.random().toString(36).slice(2));
             }
-            // redirect to home
             window.location.href = 'index.html';
         }));
 
-    // login form
+    // LOGIN FORM
     document.getElementById('login-form')
         .addEventListener('submit', async e => {
             e.preventDefault();
-
-            // grab the credentials
-            const username = document.getElementById('login-username').value;
+            const username = document.getElementById('login-username').value.trim();
             const password = document.getElementById('login-password').value;
 
             try {
-                // POST to your login endpoint (match the path your server uses)
                 const res = await fetch('/api/login', {
                     method: 'POST',
+                    credentials: 'include',            // ← send session cookie
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
                 });
-
                 const data = await res.json();
-                console.log('login response', res.status, data);
 
-                if (data.success) {
-                    // on success, go to your protected page
+                if (res.ok && data.success) {
                     window.location.href = 'index.html';
                 } else {
-                    // show the server-sent error message
-                    alert('Login failed: ' + (data.message || res.statusText));
+                    alert('Login failed: ' + (data.error || data.message || res.statusText));
                 }
             } catch (err) {
-                console.error('Fetch error:', err);
+                console.error(err);
                 alert('Login error: ' + err.message);
             }
         });
 
-    // signup form
+    // SIGNUP FORM
     document.getElementById('signup-form')
         .addEventListener('submit', async e => {
             e.preventDefault();
-            const username = document.getElementById('create-username').value;
+            const username = document.getElementById('create-username').value.trim();
             const password = document.getElementById('create-password').value;
-            const res = await fetch('/api/signup', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
-            const data = await res.json();
-            if (data.success) {
-                alert('Account created! You can now log in.');
-                show('login');
-            } else {
-                alert('Error: ' + data.message);
+
+            try {
+                const res = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+
+                if (res.ok && data.success) {
+                    alert('Account created! You can now log in.');
+                    show('login');
+                } else {
+                    alert('Sign-up failed: ' + (data.error || data.message || res.statusText));
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Network error.');
             }
         });
 </script>
