@@ -29,6 +29,35 @@ db.serialize(() => {
         // ignore “duplicate column” errors:
         if (err && !/duplicate column/.test(err.message)) console.error(err);
     });
+    db.run(`
+        CREATE TABLE IF NOT EXISTS reviews (
+                                             id               INTEGER PRIMARY KEY AUTOINCREMENT,
+                                             title            TEXT    NOT NULL,
+                                             rating           FLOAT    NOT NULL,
+                                             professor        TEXT    NOT NULL,
+                                             mand_attendance  TEXT    NOT NULL,
+                                             grade            FLOAT    NOT NULL,
+                                             desc             TEXT    NOT NULL,
+                                             created_at       DATETIME DEFAULT CURRENT_TIMESTAMP,
+                                             user_id          INTEGER NOT NULL,
+                                             course_id        INTEGER NOT NULL,
+                                             FOREIGN KEY (user_id)   REFERENCES users(id)   ON DELETE CASCADE,
+                                             FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+        );
+    `);
+    db.run(`
+        CREATE TABLE IF NOT EXISTS courses (
+                                               id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                                               code       TEXT    UNIQUE NOT NULL,
+                                               title      TEXT    NOT NULL,
+                                               instructors TEXT, -- JSON.stringify array of intructors
+                                               description TEXT,
+                                               prerequisites TEXT, -- JSON.stringify array of codes
+                                               credits INTEGER,
+                                               frequency TEXT,
+                                               created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
 });
 
 module.exports = db;
