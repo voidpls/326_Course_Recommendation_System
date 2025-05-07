@@ -23,7 +23,7 @@ exports.getRecommendations = async (req, res, next) => {
         console.log(userId, courses, userInterests)
 
         const prompt = getPrompt(courses, userInterests)
-        console.log(prompt)
+        // console.log(prompt)
         const response = await queryLLM(prompt)
         res.status(200).json({ response, success: true} )
     } catch (err) {
@@ -77,4 +77,3 @@ async function queryLLM(prompt) {
       return response.candidates[0].content.parts[0].text
     return null
 }
-    
