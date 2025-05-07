@@ -8,7 +8,7 @@ class User {
     this.interests = interests;
     this.preferContact = preferContact;
   }
-  
+
   updateUserId(newUserId) {
     this.user_id = newUserId;
   }
@@ -35,7 +35,7 @@ class User {
 
   updateGradYear(newGradYear) {
     this.gradYear = newGradYear;
-  } 
+  }
 
   getGradYear() {
     return this.gradYear;
@@ -48,7 +48,7 @@ class User {
   getCompletedCourses() {
     return this.completed_courses;
   }
-  
+
   updateInterests(newInterests) {
     this.interests = newInterests;
   }
@@ -77,4 +77,4 @@ class User {
     };
   }
 }
-export default User;
+module.exports.User = User;
