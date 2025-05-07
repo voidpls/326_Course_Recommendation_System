@@ -1,17 +1,18 @@
+// api/routes/course_profile.js
 const express = require('express');
-const router = express.Router();
-const ctrl = require('../controllers/course_profile_controller.js');
+const router  = express.Router();
+const ctrl    = require('../controllers/course_profile_controller');
+const auth    = require('./middleware_auth');
 
-// GET /course-profile/:userId
-router.get('/:userId', ctrl.getProfile);
+// apply auth to all course_profile routes
+router.use(auth);
 
-// POST /course-profile
-router.post('/', ctrl.createDetails);
+// GET /api/course_profile
+//    returns the profile for the logged-in user (req.user.id)
+router.get('/', ctrl.getProfile);
 
-// PUT /course-profile/:userId
-router.put('/:userId', ctrl.updateDetails);
-
-// DELETE /course-profile/:userId
-router.delete('/:userId', ctrl.deleteDetails);
+// PUT /api/course_profile
+//    updates the profile for the logged-in user
+router.put('/', ctrl.updateProfile);
 
 module.exports = router;
