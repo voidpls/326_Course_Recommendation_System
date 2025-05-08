@@ -2,17 +2,25 @@ window.loadCourseReviewPage = function(){
     loadCourses()
 }
 
+let course_id_selected = null
 async function loadCourses(){
     let courseListElement = document.getElementById("course-list")
     console.log(courseListElement)
-    let resoonse = await fetch("Services/course-details-page/complete_course_list.json")
-    let courseList = await resoonse.json()
+    let response = await fetch("/course-details")
+    let courseList = await response.json()
     console.log(courseList)
     for(let i = 0; i < courseList.length; i++){
         let course = courseList[i]
         let course_item = document.createElement("li")
+
+        response = await fetch(`/course-details/ratingAvg/${course.id}`)
+        let avgJSON = await response.json()
+        let avg = avgJSON.avg
+        avg = (Math.round(avg*10))/10
+        course.avg = avg
+
         course_item.className = "course-item"
-        course_item.innerHTML = `<div class="rating-box"><h1 class="rating-text">3.1</h1></div><div class="name-box"><h2 class="name-text">${course.code}: ${course.title}</h2></div>`
+        course_item.innerHTML = `<div class="rating-box"><h1 class="rating-text">${avg}</h1></div><div class="name-box"><h2 class="name-text">${course.code}: ${course.title}</h2></div>`
         //course_item.onclick = courseClick
         course_item.addEventListener("click", function (e) {courseClick(course)}, false)
         course_item.params = course
@@ -21,6 +29,8 @@ async function loadCourses(){
 }
 
 function courseClick(course){
+    course_id_selected = course.id
+    console.log(course_id_selected)
     changeSelected(course)
     initAddReview()
     removeReviews()
@@ -73,7 +83,7 @@ function changeSelected(course){
     let credits = document.getElementById("credits")
     selectedTitle.innerHTML = `
         <div class="rating-box">
-            <h1 class="rating-text">3.1</h1>
+            <h1 class="rating-text">${course.avg}</h1>
         </div>
         <div class="name-box">
             <h1 class="name-text">${course.code}: ${course.title}</h1>
@@ -97,7 +107,7 @@ async function deleteReview(courseID) {
 }
 
 async function loadReviews(){
-    let rawRes = await fetch('/course-reviews/reviews/1', { //1 is dummy val
+    let rawRes = await fetch(`/course-reviews/reviews/${course_id_selected}`, { //1 is dummy val
         method: "GET",
         headers: {
             'Accept': 'application/json'
@@ -174,7 +184,9 @@ async function addReview(){
             attendance: attendance,
             grade: grade,
             rating: rating,
-            desc: desc
+            desc: desc,
+            user_id: sessionStorage.getItem('userId'),
+            course_id: course_id_selected
         })
     })
     let res = await rawRes.json()
