@@ -1,6 +1,6 @@
 const path    = require('path');
 const sqlite3 = require('sqlite3').verbose();
-require("./seedCourses")
+const seed = require("./seedCourses")
 
 const db = new sqlite3.Database(path.join(__dirname, 'users.db'), err => {
     if (err) console.error(err);
@@ -59,6 +59,7 @@ db.serialize(() => {
                                                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `);
+    seed(db)
 });
 
 module.exports = db;
