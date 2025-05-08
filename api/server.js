@@ -122,14 +122,14 @@ app.post('/api/logout', (req, res) => {
         res.json({ success: true });
     });
 });
-// 1️⃣ custom root handler
-app.get('/', (req, res) => {
-    if (req.session.user) {
-        res.sendFile(path.join(__dirname, '../src/index.html'));
-    } else {
-        res.sendFile(path.join(__dirname, '../src/login.html'));
-    }
-});
+// // 1️⃣ custom root handler
+// app.get('/', (req, res) => {
+//     if (req.session.user) {
+//         res.sendFile(path.join(__dirname, '../src/index.html'));
+//     } else {
+//         res.sendFile(path.join(__dirname, '../src/login.html'));
+//     }
+// });
 
 // ── Other routers ─────────────────────────────────────────────────────────────
 app.use('/course-details',  detailsRouter);
