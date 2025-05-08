@@ -61,6 +61,8 @@ body {
 
 /* Recommendations section */
 .homepage-content {
+    /* padding-left: 5%; */
+    padding-right: 20%;
     flex: 2;
     margin-top: 10px;
 }
