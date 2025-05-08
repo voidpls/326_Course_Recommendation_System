@@ -14,7 +14,7 @@ db.serialize(() => {
                                              id               INTEGER PRIMARY KEY AUTOINCREMENT,
                                              username         TEXT    UNIQUE NOT NULL,
                                              password_hash    TEXT    NOT NULL,
-                                             name             TEXT    NOT NULL,
+                                             name             TEXT,
                                              email            TEXT    UNIQUE,
                                              phone            TEXT,
                                              graduation_year  TEXT,
