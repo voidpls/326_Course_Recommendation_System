@@ -46,7 +46,7 @@ async function getCourseRecommendations (userId, userInterests) {
     // userId = INT 
     // userInterests = STRING
     try {
-        const res = await fetch('http://localhost:3000/recommendations', {
+        const res = await fetch('/recommendations', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
