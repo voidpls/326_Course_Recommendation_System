@@ -1,25 +1,18 @@
 require('dotenv').config()
+const db = require('../db');
 const { GEMINI_API_KEY } = process.env
 const { GoogleGenAI, Type, createPartFromUri } = require("@google/genai")
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY })
 const completeCourseList = require('../../src/Services/course-details-page/complete_course_list.json')
 
-const memoryStore = {
-    1: { 
-        userId: 1, 
-        courseProgress: { 
-            "selectedIds": [ "MATH131", "MATH132", "MATH233_or_STAT315", "MATH235", "CICS110", "CICS160", "CICS210", "CS240", "CS250", "CS220", "CS230", "CS_300_elective_1", "CS320_or_CS326", "CICS305" ], 
-            "inputValues": { "CS_300_elective_1_input": "383" } 
-        }, 
-        courses: [ "MATH131", "MATH132", "MATH233_or_STAT315", "MATH235", "CICS110", "CICS160", "CICS210", "CS240", "CS250", "CS220", "CS_300_elective_1: 383", "CS320_or_CS326", "CICS305" ]
-    }
-} 
-
 exports.getRecommendations = async (req, res, next) => {
     let { userId, userInterests } = req.body;
     try {
         userId = parseInt(userId)
-        const { courses } = memoryStore[userId]
+        const user = await databaseGetCourses(userId)
+        if (!user) return res.status(500).json({success: false, error: "Could not find courses for user"})
+
+        const courses = JSON.parse(user.courses) || []
         console.log(userId, courses, userInterests)
 
         const prompt = getPrompt(courses, userInterests)
@@ -76,4 +69,23 @@ async function queryLLM(prompt) {
     if (response.candidates?.[0]?.content?.parts?.[0]?.text)
       return response.candidates[0].content.parts[0].text
     return null
+}
+
+function databaseGetCourses(userId) {
+    return new Promise((resolve, reject) => {
+        db.get(
+            `SELECT courses
+             FROM users
+             WHERE id = ?`,
+            [
+                userId
+            ],
+            (err, user) => {
+                if (err) {
+                    console.error(err)
+                    reject(err)
+                } else resolve(user)
+            }
+        );    
+    })
 }
