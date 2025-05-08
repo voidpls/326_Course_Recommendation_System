@@ -51,10 +51,7 @@
     document.getElementById('back-login-btn').addEventListener('click', () => show('login'));
     document.querySelectorAll('#guest-btn,#guest2-btn')
         .forEach(btn => btn.addEventListener('click', () => {
-            if (!localStorage.getItem('guest-id')) {
-                localStorage.setItem('guest-id','guest_' + Math.random().toString(36).slice(2));
-            }
-            window.location.href = 'index.html';
+            window.location.href = '/index.html';
         }));
 
     // LOGIN FORM
