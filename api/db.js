@@ -1,5 +1,6 @@
 const path    = require('path');
 const sqlite3 = require('sqlite3').verbose();
+require("./seedCourses")
 
 const db = new sqlite3.Database(path.join(__dirname, 'users.db'), err => {
     if (err) console.error(err);
