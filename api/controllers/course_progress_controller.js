@@ -2,7 +2,7 @@ const memoryStore = {
     1: { 
         userId: 1, 
         courseProgress: { 
-            "selectedIds": [ "MATH131", "MATH132", "MATH233_or_STAT315", "MATH235", "CICS110", "CICS160", "CICS210", "CS240", "CS250", "CS220", "CS_300_elective_1", "CS320_or_CS326", "CICS305" ], 
+            "selectedIds": [ "MATH131", "MATH132", "MATH233_or_STAT315", "MATH235", "CICS110", "CICS160", "CICS210", "CS240", "CS250", "CS220", "CS230", "CS_300_elective_1", "CS320_or_CS326", "CICS305" ], 
             "inputValues": { "CS_300_elective_1_input": "383" } 
         }, 
         courses: [ "MATH131", "MATH132", "MATH233_or_STAT315", "MATH235", "CICS110", "CICS160", "CICS210", "CS240", "CS250", "CS220", "CS_300_elective_1: 383", "CS320_or_CS326", "CICS305" ]

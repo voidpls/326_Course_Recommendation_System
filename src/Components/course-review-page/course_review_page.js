@@ -1,4 +1,4 @@
-export function loadCourseReviewPage() {
+window.loadCourseReviewPage = function(){
     loadCourses()
 }
 
@@ -45,14 +45,16 @@ function initAddReview(){
         ></label>
     
         <div class="list webkit-scrollbar" role="list" dir="auto">
+            <label for="title" class="info-label">Title: </label>
+            <input type="text" class="info" name="title" id="title">
+            <label for="rating" class="info-label">Rating: </label>
+            <input type="number" class="info" name="rating" id="rating"><br>
             <label for="proffesor" class="info-label">Proffesor: </label>
             <input type="text" class="info" name="proffesor" id="proffesor">
             <label for="attendance" class="info-label">Attendance Required: </label>
             <input type="text" class="info" name="attendance" id="attendance"><br>
             <label for="grade" class="info-label">Grade: </label>
-            <input type="text" class="info" name="grade" id="grade">
-            <label for="textbook" class="info-label">Textbook: </label>
-            <input type="text" class="info" name="textbook" id="textbook"><br>
+            <input type="number" class="info" name="grade" id="grade">
             <label for="desc" class="info-label">Description: </label><br>
             <textarea type="text" class="desc" name="desc" id="desc"></textarea><br>
             <button class="add" id="add">Add</button>
@@ -82,18 +84,35 @@ function changeSelected(course){
 }
 
 function removeReviews(){
-    console.log('reviews removed')
+    let reviewList = document.getElementById("review-list")
+    reviewList.innerHTML = ""
 }
 
-function loadReviews(){
-    console.log('reviews loaded')
+async function deleteReview(courseID) {
+    let rawRes = await fetch('/course-reviews/review/1', { //1 is dummy val
+        method: 'DELETE'
+    })
+    let res = await rawRes.json()
+    console.log(res)
 }
 
-function addReview(){
+async function loadReviews(){
+    let rawRes = await fetch('/course-reviews/reviews/1', { //1 is dummy val
+        method: "GET",
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    let res = await rawRes.json()
+    console.log(res)
+}
+
+async function addReview(){
+    let title = document.getElementById("title").value
     let proffesor = document.getElementById("proffesor").value
     let attendance = document.getElementById("attendance").value
     let grade = document.getElementById("grade").value
-    let textbook = document.getElementById("textbook").value
+    let rating = document.getElementById("rating").value
     let desc = document.getElementById("desc").value
     let reviewList = document.getElementById("review-list")
     console.log(reviewList)
@@ -102,19 +121,37 @@ function addReview(){
     item.innerHTML = `
         <div class="line">
             <div class="rating-box">
-                <h2 class="rating-text">3.1</h2>
+                <h2 class="rating-text">${rating}</h2>
             </div>
             <div class="review-title-box">
-                <h2 class="review-title-text">Review title</h2>
+                <h2 class="review-title-text">${title}</h2>
             </div>
         </div>
         <div class="line">
-            <h4 class="additional-info">Professor Name: ${proffesor}, Mandatory Attendance: ${attendance}, Grade: ${grade}, Textbook: ${textbook}</h4>
+            <h4 class="additional-info">Professor Name: ${proffesor}, Mandatory Attendance: ${attendance}, Grade: ${grade}</h4>
         </div>
         <div class="line">
             <p class="paragraph">${desc}</p>
         </div>
     `
     reviewList.insertAdjacentElement("afterbegin", item)
-    console.log( proffesor, attendance, grade, textbook, desc)
+    
+    let rawRes = await fetch('/course-reviews/review', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            title: title,
+            professor: proffesor,
+            attendance: attendance,
+            grade: grade,
+            rating: rating,
+            desc: desc
+        })
+    })
+    let res = await rawRes.json()
+    console.log(res)
+    console.log(title, proffesor, attendance, grade, rating, desc)
 }
