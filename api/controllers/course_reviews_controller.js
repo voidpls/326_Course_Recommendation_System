@@ -2,12 +2,15 @@ let reviewData = {fake: 'data'}
 const db = require('../db');
 
 exports.getReviews = async (req, res, next) => {
-  const { courseId } = req.params;  
-  try {
-      res.json({courseId, reviewData});
-    } catch (err) {
-      next(err);
-    }
+  const courseId = req.params.courseID;  
+  db.all(
+    `SELECT title, rating, professor, mand_attendance, grade, desc FROM reviews WHERE id = ?`,
+    [courseId],
+    (err, review) => {
+      if (err) return next(err);
+      res.json(review);
+  }
+  )
 };
 
 exports.createReview = async (req, res, next) => {

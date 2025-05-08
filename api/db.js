@@ -1,5 +1,6 @@
 const path    = require('path');
 const sqlite3 = require('sqlite3').verbose();
+require("./seedCourses")
 
 const db = new sqlite3.Database(path.join(__dirname, 'users.db'), err => {
     if (err) console.error(err);
@@ -14,7 +15,7 @@ db.serialize(() => {
                                              id               INTEGER PRIMARY KEY AUTOINCREMENT,
                                              username         TEXT    UNIQUE NOT NULL,
                                              password_hash    TEXT    NOT NULL,
-                                             name             TEXT    NOT NULL,
+                                             name             TEXT,
                                              email            TEXT    UNIQUE,
                                              phone            TEXT,
                                              graduation_year  TEXT,

@@ -105,17 +105,13 @@ async function loadReviews(){
     })
     let res = await rawRes.json()
     console.log(res)
+    for(let review of res){
+        addReviewElement(review.title, review.professor, review.mand_attendance, review.grade, review.rating, review.desc)
+    }
 }
 
-async function addReview(){
-    let title = document.getElementById("title").value
-    let proffesor = document.getElementById("proffesor").value
-    let attendance = document.getElementById("attendance").value
-    let grade = document.getElementById("grade").value
-    let rating = document.getElementById("rating").value
-    let desc = document.getElementById("desc").value
+function addReviewElement(title, professor, attendance, grade, rating, desc){
     let reviewList = document.getElementById("review-list")
-    console.log(reviewList)
     let item = document.createElement('li')
     item.classList.add("review-item")
     item.innerHTML = `
@@ -128,13 +124,43 @@ async function addReview(){
             </div>
         </div>
         <div class="line">
-            <h4 class="additional-info">Professor Name: ${proffesor}, Mandatory Attendance: ${attendance}, Grade: ${grade}</h4>
+            <h4 class="additional-info">Professor Name: ${professor}, Mandatory Attendance: ${attendance}, Grade: ${grade}</h4>
         </div>
         <div class="line">
             <p class="paragraph">${desc}</p>
         </div>
     `
     reviewList.insertAdjacentElement("afterbegin", item)
+}
+
+async function addReview(){
+    let title = document.getElementById("title").value
+    let proffesor = document.getElementById("proffesor").value
+    let attendance = document.getElementById("attendance").value
+    let grade = document.getElementById("grade").value
+    let rating = document.getElementById("rating").value
+    let desc = document.getElementById("desc").value
+    addReviewElement(title, proffesor, attendance, grade, rating, desc)
+    // let reviewList = document.getElementById("review-list")
+    // let item = document.createElement('li')
+    // item.classList.add("review-item")
+    // item.innerHTML = `
+    //     <div class="line">
+    //         <div class="rating-box">
+    //             <h2 class="rating-text">${rating}</h2>
+    //         </div>
+    //         <div class="review-title-box">
+    //             <h2 class="review-title-text">${title}</h2>
+    //         </div>
+    //     </div>
+    //     <div class="line">
+    //         <h4 class="additional-info">Professor Name: ${proffesor}, Mandatory Attendance: ${attendance}, Grade: ${grade}</h4>
+    //     </div>
+    //     <div class="line">
+    //         <p class="paragraph">${desc}</p>
+    //     </div>
+    // `
+    // reviewList.insertAdjacentElement("afterbegin", item)
     
     let rawRes = await fetch('/course-reviews/review', {
         method: "POST",
