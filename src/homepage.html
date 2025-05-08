@@ -4,28 +4,30 @@
 
     <div class="homepage-sidebar">
         <h2>Input Your Information</h2>
-        <form>
+        <form id="recommendation-form">
             <div class="homepage-input">
                 <label for="homepage-interests">Interests</label>
                 <input type="text" id="homepage-interests" placeholder="Enter your interests">
             </div>
-                <div class="homepage-input">
+                <!-- <div class="homepage-input">
                 <label for="homepage-YearInCollege">Year in College</label>
                 <input type="text" id="homepage-YearInCollege" placeholder="Enter your current year in college">
-            </div>
-            <button type="button">Submit</button>
+            </div> -->
+            <button type="button" id="recommendations-submit-btn">Submit</button>
         </form>
     </div>
 
     <div class="homepage-content">
         <h2>Course Recommendations</h2>
-        <div class="homepage-recommendation">
-            <h3>Course Title 1</h3>
-            <p>Short description of course 1 goes here.</p>
-        </div>
-        <div class="homepage-recommendation">
-            <h3>Course Title 2</h3>
-            <p>Short description of course 2 goes here.</p>
+        <div id="recommendations-container">
+            <div class="homepage-recommendation">
+                <h3>Course Title 1</h3>
+                <p>Short description of course 1 goes here.</p>
+            </div>
+            <div class="homepage-recommendation">
+                <h3>Course Title 2</h3>
+                <p>Short description of course 2 goes here.</p>
+            </div>    
         </div>
         <!-- Add more recommendation entries as needed -->
     </div>
