@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const ctrl = require('../controllers/course_details_controller.js');
 
-// // GET /course-details/:courseId
-// router.get('/:courseId', ctrl.getDetails);
+// // GET /course-details
+ router.get('/', ctrl.getDetails);
+ // // GET /course-details/ratingAvg/:courseId
+ router.get('/ratingAvg/:courseId', ctrl.getAvg);
 
 // // POST /course-details
 // router.post('/', ctrl.createDetails);
