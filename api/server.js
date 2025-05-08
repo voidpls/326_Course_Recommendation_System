@@ -105,7 +105,7 @@ app.post('/api/login', (req, res) => {
 
                 // ← store both id and username in session
                 req.session.user = { id: row.id, username };
-                res.json({ success: true });
+                res.json({ success: true, userId: row.id });
             } catch (e) {
                 console.error('Login bcrypt compare error:', e);
                 res.status(500).json({ success: false, message: 'Authentication error.' });

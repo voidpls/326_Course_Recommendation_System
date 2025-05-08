@@ -163,7 +163,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-
+        if (!sessionStorage.getItem('userId')) window.location.href = 'login.html'
         divHomePage = document.getElementById('HomePage');
         fetch("homepage.html")
             .then(res => res.text())
