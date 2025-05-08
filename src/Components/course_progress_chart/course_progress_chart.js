@@ -17,6 +17,7 @@ window.courseProgressPageSetup = async function() {
     await initSelectionButtons();
 };
 
+
 async function initSelectionButtons() {
     const selectionBtns = document.getElementsByClassName('course-progress-chart-button');
     Array.from(selectionBtns)
