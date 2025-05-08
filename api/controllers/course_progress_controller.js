@@ -5,7 +5,7 @@ exports.getProgress = async (req, res, next) => {
     try {
         userId = parseInt(userId)
         const user = await databaseGetProgress(userId)
-        if (!user) res.status(200).json({success: false, error: "User does not exist"})
+        if (!user) return res.status(200).json({success: false, error: "User does not exist"})
 
         res.status(200).json({
             userId, 

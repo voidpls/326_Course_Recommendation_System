@@ -50,17 +50,6 @@ async function changeCourse(btns, btn) {
 }
 
 async function initFlowchart() {
-    // get state from server
-
-    const rawRes = await fetch('/course-progress/1', {
-        method: "GET",
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    const res = await rawRes.json()
-    console.log(res)
-
     // load saved state when page loads
     await loadFormState();    
 
@@ -111,9 +100,7 @@ async function initFlowchart() {
 
 async function submitForm() {
     await saveFormState();
-    /* 
-        <SAVE FORM STATE TO BACKEND ALSO HERE>
-    */
+
     const selectedCourses = [];
     const selectedBoxes = document.querySelectorAll('.course-box.selected');
 
@@ -137,25 +124,9 @@ async function submitForm() {
     resultsList.innerHTML = selectedCourses.join(', ')
     
     const formInputs = getFormInputs()
-    const rawRes = await fetch('/course-progress', {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            userId: 1,
-            courseProgress: formInputs,
-            courses: selectedCourses
-        })
-    })
-    const res = await rawRes.json()
-    console.log(res)
+    const userId = sessionStorage.getItem('userId');
+    await setUserProgress(userId, selectedCourses, formInputs)
 
-    resultsList.innerHTML =  resultsList.innerHTML + 
-        '<br><br>' +
-        'Server response:<br>' + 
-        JSON.stringify(res) 
     document.getElementById('course-progress-chart-results').style.display = 'block';
 }
 
@@ -203,28 +174,45 @@ async function saveFormState() {
 }
 
 async function loadFormState() {
+    let selectedCourses, courseInputs
     try {
-        const db = await openDB();
-        const transaction = db.transaction([STORE_NAME], 'readonly');
-        const store = transaction.objectStore(STORE_NAME);
-        
-        // get selected courses (promise)
-        const selectedCourses = new Promise((resolve, reject) => {
-            const request = store.get('selectedCourses');
-            request.onsuccess = () => resolve(request.result ? request.result.data : []);
-            request.onerror = () => reject(request.error);
-        });
+        const userId = sessionStorage.getItem('userId');
+        const userData = userId ? await fetchUserProgress(userId) : null
+        if (userData && userData.success && userData.courseProgress) {
+            console.log("User course progress data obtained from server, using that")
+            selectedCourses = new Promise((resolve, reject) => {
+                if (userData.courseProgress.selectedCourses) 
+                    resolve(userData.courseProgress.selectedCourses)
+                else resolve([])
+            })
+            courseInputs = new Promise((resolve, reject) => {
+                if (userData.courseProgress.courseInputs) 
+                    resolve(userData.courseProgress.courseInputs)
+                else resolve({})
+            })
+        } else {
+            const db = await openDB();
+            const transaction = db.transaction([STORE_NAME], 'readonly');
+            const store = transaction.objectStore(STORE_NAME);
+            
+            // get selected courses (promise)
+            selectedCourses = new Promise((resolve, reject) => {
+                const request = store.get('selectedCourses');
+                request.onsuccess = () => resolve(request.result ? request.result.data : []);
+                request.onerror = () => reject(request.error);
+            });
+    
+            // get course inputs (promise)
+            courseInputs = new Promise((resolve, reject) => {
+                const request = store.get('courseInputs');
+                request.onsuccess = () => resolve(request.result ? request.result.data : {});
+                request.onerror = () => reject(request.error);
+            });   
+        }
 
-        // get course inputs (promise)
-        const courseInputs = new Promise((resolve, reject) => {
-            const request = store.get('courseInputs');
-            request.onsuccess = () => resolve(request.result ? request.result.data : {});
-            request.onerror = () => reject(request.error);
-        });
-
-
-        // resolve database get promises
-        const [selectedIds, inputValues] = await Promise.all([selectedCourses, courseInputs]);
+        // resolve database/query promises
+        const [ selectedIds, inputValues ] = await Promise.all([selectedCourses, courseInputs]); 
+        console.log(selectedIds, inputValues)
 
         // mark all selected inputs as selected in DOM
         selectedIds.forEach(id => {
@@ -240,7 +228,9 @@ async function loadFormState() {
             if (input) {
                 input.value = inputValues[inputId];
             }
-        });      
+        });     
+        
+        await saveFormState() // in case fetched from DB, save to local
     } catch (e) {
         console.log('Error loading form state:', e);
     }
@@ -269,3 +259,60 @@ async function openDB() {
         };
     });
 }
+
+async function fetchUserProgress(userId) {
+    const endpoint = `/course-progress/${userId}`
+    try {
+        const res = await fetch(endpoint, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!res || !res.ok) return null
+
+        const data = await res.json()
+        // console.log(data)
+        return data
+    } catch (err) {
+        console.log(err)
+        return null
+    }
+}
+
+
+async function setUserProgress(userId, courses, formInputs) {
+    const endpoint = `/course-progress`
+    const { selectedIds, inputValues } = getFormInputs()
+
+    const obj = {
+        userId,
+        courseProgress: {
+            selectedCourses: selectedIds,
+            courseInputs: inputValues
+        },
+        courses
+    }
+    // console.log(obj)
+
+    try {
+        const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj)
+        });
+
+        if (!res || !res.ok) return console.error("Failed to set course progress data")
+
+        const data = await res.json()
+        if (data.success) console.log("Set course progress succesfully")
+        else console.log("Set course progress UN-succesfully")
+    } catch (err) {
+        console.log(err)
+        return null
+    }
+}
+
