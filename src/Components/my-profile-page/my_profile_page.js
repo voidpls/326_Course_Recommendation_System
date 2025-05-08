@@ -1,33 +1,21 @@
-// Database configuration
-const DB_NAME = 'CourseRecommenderDB';
+// my_profile_page.js
+
+// ——————————————————————————————————————————————————————————————
+//  IndexedDB setup (unchanged)
+// ——————————————————————————————————————————————————————————————
+
+const DB_NAME    = 'CourseRecommenderDB';
 const DB_VERSION = 1;
 const STORE_NAME = 'userProfile';
 
-// Check for IndexedDB support
-if (!window.indexedDB) {
-    console.warn("IndexedDB is not supported in this browser. Profile data won't be saved.");
-}
-
-// Open or create the database
 function openDatabase() {
-    if (!window.indexedDB) {
-        return Promise.reject("IndexedDB not supported");
-    }
-
+    if (!window.indexedDB) return Promise.reject("IndexedDB not supported");
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open(DB_NAME, DB_VERSION);
-        
-        request.onerror = (event) => {
-            console.error('Database error:', event.target.error);
-            reject(event.target.error);
-        };
-        
-        request.onsuccess = (event) => {
-            resolve(event.target.result);
-        };
-        
-        request.onupgradeneeded = (event) => {
-            const db = event.target.result;
+        const req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onerror = e    => reject(e.target.error);
+        req.onsuccess = e  => resolve(e.target.result);
+        req.onupgradeneeded = e => {
+            const db = e.target.result;
             if (!db.objectStoreNames.contains(STORE_NAME)) {
                 db.createObjectStore(STORE_NAME, { keyPath: 'id' });
             }
@@ -35,294 +23,224 @@ function openDatabase() {
     });
 }
 
-// Save profile data to IndexedDB
 function saveProfileData(data) {
-    return openDatabase().then(db => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(STORE_NAME, 'readwrite');
-            const store = transaction.objectStore(STORE_NAME);
-            
-            // Use fixed ID since we're only storing one profile
-            const request = store.put({ id: 1, ...data });
-            
-            request.onerror = (event) => {
-                console.error('Save error:', event.target.error);
-                reject(event.target.error);
-            };
-            
-            request.onsuccess = () => {
-                resolve();
-            };
+    const token = localStorage.getItem('token');
+    return fetch('/api/course_profile', {
+        method:      'PUT',
+        credentials: 'include',
+        headers: {
+            'Content-Type':  'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify(data)
+    })
+        .then(res => {
+            if (!res.ok) throw new Error('Failed to save profile.');
+            return res.json();
+        })
+        .then(saved => {
+            return openDatabase().then(db => new Promise((resolve, reject) => {
+                const tx    = db.transaction(STORE_NAME, 'readwrite');
+                const store = tx.objectStore(STORE_NAME);
+                const req   = store.put({ id: 1, ...data });
+                req.onerror   = e => reject(e.target.error);
+                req.onsuccess = () => resolve(saved);
+            }));
         });
-    });
 }
 
-// Load profile data from IndexedDB
 function loadProfileData() {
-    return openDatabase().then(db => {
-        return new Promise((resolve, reject) => {
-            const transaction = db.transaction(STORE_NAME, 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
-            const request = store.get(1); // Get the profile with ID 1
-            
-            request.onerror = (event) => {
-                console.error('Load error:', event.target.error);
-                reject(event.target.error);
-            };
-            
-            request.onsuccess = (event) => {
-                resolve(event.target.result || {});
-            };
-        });
-    });
+    return fetch('/api/course_profile', { credentials: 'include' })
+        .then(res => {
+            if (!res.ok) throw new Error();
+            return res.json();
+        })
+        .then(({ user, taken }) => ({
+            name:     user.username,
+            email:    user.email,
+            phone:    user.phone,
+            gradYear: user.graduation_year,
+            interests:user.interests,
+            contact:  user.preferred_contact,
+            taken
+        }))
+        .catch(() =>
+            openDatabase().then(db => new Promise((resolve, reject) => {
+                const tx    = db.transaction(STORE_NAME, 'readonly');
+                const store = tx.objectStore(STORE_NAME);
+                const req   = store.get(1);
+                req.onerror   = () => reject(req.error);
+                req.onsuccess = () => resolve(req.result || {});
+            }))
+        );
 }
 
-// Main profile page setup function
-function setupProfilePage() {
-    const selectBox = document.getElementById('my-profile-page-interestsSelect');
+// ——————————————————————————————————————————————————————————————
+//  Main UI wiring (inject interests → then wire everything else)
+// ——————————————————————————————————————————————————————————————
+
+document.addEventListener('DOMContentLoaded', () => {
+    const selectBox        = document.getElementById('my-profile-page-interestsSelect');
     const optionsContainer = document.getElementById('my-profile-page-interestsOptions');
     if (!selectBox || !optionsContainer) return;
 
-    const options = document.querySelectorAll('.my-profile-page-option');
-    const selectedTagsContainer = document.getElementById('my-profile-page-selectedTags');
-    const hiddenInput = document.getElementById('my-profile-page-interests');
-    const saveButton = document.querySelector('button[type="submit"]');
+    fetch('/Services/course-details-page/sorted_full_course_list.json')
+        .then(r => r.json())
+        .then(courses => {
+            optionsContainer.innerHTML = courses
+                .map(c => `<div class="my-profile-page-option" data-value="${c.code}">${c.title}</div>`)
+                .join('');
+            setupProfilePage();
+        })
+        .catch(err => {
+            console.error('Could not load interest list:', err);
+            setupProfilePage();
+        });
+});
+
+function setupProfilePage() {
+    const selectBox        = document.getElementById('my-profile-page-interestsSelect');
+    const optionsContainer = document.getElementById('my-profile-page-interestsOptions');
+    const options          = optionsContainer.querySelectorAll('.my-profile-page-option');
+    const selectedTags     = document.getElementById('my-profile-page-selectedTags');
+    const hiddenInput      = document.getElementById('my-profile-page-interests');
+    const saveButton       = document.querySelector('button[type="submit"]');
 
     let selectedInterests = [];
 
-    // Toggle dropdown visibility
-    selectBox.addEventListener('click', function() {
+    // helper to refresh sidebar
+    function updateProfileSummary(data) {
+        document.getElementById('summary-name').textContent      = data.name    || 'X';
+        document.getElementById('summary-email').textContent     = data.email   || 'X@example.com';
+        document.getElementById('summary-phone').textContent     = data.phone   || '123';
+        document.getElementById('summary-grad-year').textContent = data.gradYear|| '202X';
+        document.getElementById('summary-interests').textContent =
+            data.interests
+                ? data.interests.split(',').join(', ')
+                : 'None';
+        document.getElementById('summary-contact').textContent   = data.contact || 'None';
+    }
+
+    // toggle dropdown
+    selectBox.addEventListener('click', () => {
         optionsContainer.classList.toggle('show');
     });
 
-    // Handle option selection
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            const value = this.getAttribute('data-value');
+    // option click
+    options.forEach(opt => opt.addEventListener('click', function() {
+        const v = this.dataset.value;
+        if (selectedInterests.includes(v)) {
+            selectedInterests = selectedInterests.filter(x => x !== v);
+            this.classList.remove('selected');
+        } else {
+            selectedInterests.push(v);
+            this.classList.add('selected');
+        }
+        renderTags();
+    }));
 
-            if (selectedInterests.includes(value)) {
-                // Remove if already selected
-                selectedInterests = selectedInterests.filter(item => item !== value);
-                this.classList.remove('selected');
-            } else {
-                // Add if not selected
-                selectedInterests.push(value);
-                this.classList.add('selected');
-            }
-
-            updateSelectedTags();
-            updateHiddenInput();
-        });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(e) {
+    // close if outside
+    document.addEventListener('click', e => {
         if (!selectBox.contains(e.target) && !optionsContainer.contains(e.target)) {
             optionsContainer.classList.remove('show');
         }
     });
 
-    // Update displayed tags
-    function updateSelectedTags() {
-        selectedTagsContainer.innerHTML = '';
-
+    function renderTags() {
+        selectedTags.innerHTML = '';
         if (selectedInterests.length === 0) {
-            selectedTagsContainer.innerHTML = '<span style="color: #999;">Select interests...</span>';
+            selectedTags.innerHTML = '<span style="color:#999">Select interests...</span>';
+            hiddenInput.value = '';
             return;
         }
-
-        selectedInterests.forEach(interest => {
+        selectedInterests.forEach(val => {
             const tag = document.createElement('span');
             tag.className = 'tag';
-            tag.innerHTML = `${interest}<span class="tag-remove" data-value="${interest}">×</span>`;
-            selectedTagsContainer.appendChild(tag);
+            tag.innerHTML = `
+        ${val}
+        <span class="tag-remove" data-value="${val}">×</span>
+      `;
+            selectedTags.appendChild(tag);
         });
-
-        // Add remove tag functionality
-        document.querySelectorAll('.tag-remove').forEach(removeBtn => {
-            removeBtn.addEventListener('click', function(e) {
+        hiddenInput.value = selectedInterests.join(',');
+        // wire up removers
+        selectedTags.querySelectorAll('.tag-remove').forEach(btn => {
+            btn.addEventListener('click', e => {
                 e.stopPropagation();
-                const value = this.getAttribute('data-value');
-                selectedInterests = selectedInterests.filter(item => item !== value);
-
-                // Update option states
-                options.forEach(option => {
-                    if (option.getAttribute('data-value') === value) {
-                        option.classList.remove('selected');
-                    }
+                const v = btn.dataset.value;
+                selectedInterests = selectedInterests.filter(x => x !== v);
+                options.forEach(o => {
+                    if (o.dataset.value === v) o.classList.remove('selected');
                 });
-
-                updateSelectedTags();
-                updateHiddenInput();
+                renderTags();
             });
         });
     }
 
-    // Update hidden input with selected interests
-    function updateHiddenInput() {
-        hiddenInput.value = selectedInterests.join(',');
-    }
+    // load saved
+    loadProfileData()
+        .then(data => {
+            // form fields
+            document.getElementById('my-profile-page-name').value      = data.name    || '';
+            document.getElementById('my-profile-page-email').value     = data.email   || '';
+            document.getElementById('my-profile-page-phone').value     = data.phone   || '';
+            document.getElementById('my-profile-page-grad_year').value = data.gradYear|| '';
+            document.getElementById('my-profile-page-contact').value   = data.contact || '';
 
-    // Input validation
-    const nameInput = document.getElementById('my-profile-page-name');
-    const emailInput = document.getElementById('my-profile-page-email');
-    const phoneInput = document.getElementById('my-profile-page-phone');
-    const gradYearInput = document.getElementById('my-profile-page-grad_year');
-
-    // Validate name (only letters and spaces allowed)
-    nameInput.addEventListener('blur', function () {
-        const nameRegex = /^[a-zA-Z\s]+$/;
-        if (!nameRegex.test(this.value.trim())) {
-            alert('Invalid name. Please enter only letters and spaces.');
-            this.focus();
-        }
-    });
-
-    // Validate email
-    emailInput.addEventListener('blur', function () {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(this.value.trim())) {
-            alert('Invalid email format. Please enter a valid email.');
-            this.focus();
-        }
-    });
-
-    // Validate phone (only digits allowed)
-    phoneInput.addEventListener('blur', function () {
-        const phoneRegex = /^\d+$/;
-        if (!phoneRegex.test(this.value.trim())) {
-            alert('Invalid phone number. Please enter only digits.');
-            this.focus();
-        }
-    });
-
-    // Validate graduation year (within the next 10 years)
-    gradYearInput.addEventListener('blur', function () {
-        const currentYear = new Date().getFullYear();
-        const gradYear = parseInt(this.value.trim(), 10);
-        if (isNaN(gradYear) || gradYear < currentYear || gradYear > currentYear + 10) {
-            alert(`Invalid graduation year. Please enter a year between ${currentYear} and ${currentYear + 10}.`);
-            this.focus();
-        }
-    });
-
-    // Load saved profile data when page loads
-    loadProfileData().then(savedData => {
-        if (savedData) {
-            // Fill form fields with saved data
-            if (savedData.name) document.getElementById('my-profile-page-name').value = savedData.name;
-            if (savedData.email) document.getElementById('my-profile-page-email').value = savedData.email;
-            if (savedData.phone) document.getElementById('my-profile-page-phone').value = savedData.phone;
-            if (savedData.gradYear) document.getElementById('my-profile-page-grad_year').value = savedData.gradYear;
-            if (savedData.contact) document.getElementById('my-profile-page-contact').value = savedData.contact;
-            
-            // Handle interests
-            if (savedData.interests) {
-                selectedInterests = savedData.interests.split(',');
-                // Mark options as selected
-                options.forEach(option => {
-                    const value = option.getAttribute('data-value');
-                    if (selectedInterests.includes(value)) {
-                        option.classList.add('selected');
+            // interests
+            if (data.interests) {
+                selectedInterests = Array.isArray(data.interests)
+                    ? data.interests
+                    : data.interests.split(',');
+                options.forEach(o => {
+                    if (selectedInterests.includes(o.dataset.value)) {
+                        o.classList.add('selected');
                     }
                 });
-                updateSelectedTags();
-                updateHiddenInput();
             }
-            
-            // Update summary with saved data
-            updateProfileSummary(savedData);
-        }
-    }).catch(error => {
-        console.error('Failed to load profile data:', error);
-    });
+            renderTags();
+            // sidebar
+            updateProfileSummary(data);
+        })
+        .catch(err => console.error('Load profile error:', err));
 
-    // Update profile summary display
-    function updateProfileSummary(data) {
-        document.getElementById('summary-name').textContent = data.name || 'X';
-        document.getElementById('summary-email').textContent = data.email || 'X@example.com';
-        document.getElementById('summary-phone').textContent = data.phone || '123';
-        document.getElementById('summary-grad-year').textContent = data.gradYear || '202X';
-        document.getElementById('summary-interests').textContent = 
-            (data.interests && data.interests.split(',').join(', ')) || 'None';
-        document.getElementById('summary-contact').textContent = data.contact || 'None';
-    }
-
-    // Save button click handler
-    saveButton.addEventListener('click', function(e) {
+    // save handler
+    saveButton.addEventListener('click', e => {
         e.preventDefault();
-
-        // Get form values
-        const name = document.getElementById('my-profile-page-name').value.trim();
-        const email = document.getElementById('my-profile-page-email').value.trim();
-        const phone = document.getElementById('my-profile-page-phone').value.trim();
-        const gradYear = document.getElementById('my-profile-page-grad_year').value.trim();
-        const contact = document.getElementById('my-profile-page-contact').value.trim();
-        const interests = hiddenInput.value;
-
-        // Input validation
-        const nameRegex = /^[a-zA-Z\s]+$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const phoneRegex = /^\d+$/;
-        const currentYear = new Date().getFullYear();
-        const gradYearInt = parseInt(gradYear, 10);
-
-        let errors = [];
-
-        if (!nameRegex.test(name)) {
-            errors.push('Invalid name: Please enter only letters and spaces.');
-        }
-
-        if (!emailRegex.test(email)) {
-            errors.push('Invalid email: Please enter a valid email format.');
-        }
-
-        if (!phoneRegex.test(phone)) {
-            errors.push('Invalid phone number: Please enter only digits.');
-        }
-
-        if (isNaN(gradYearInt) || gradYearInt < currentYear || gradYearInt > currentYear + 10) {
-            errors.push(`Invalid graduation year: Please enter a year between ${currentYear} and ${currentYear + 10}.`);
-        }
-
-        if (!contact) {
-            errors.push('Preferred contact method cannot be empty.');
-        }
-
-        // If there are errors, show them in an alert
-        if (errors.length > 0) {
-            alert('Please fix the following errors:\n\n' + errors.join('\n'));
-            return;
-        }
-
-        // Prepare data to save
-        const profileData = {
-            name,
-            email,
-            phone,
-            gradYear,
-            contact,
-            interests
+        // You already have your validation… then:
+        const payload = {
+            name:      document.getElementById('my-profile-page-name').value.trim(),
+            email:     document.getElementById('my-profile-page-email').value.trim(),
+            phone:     document.getElementById('my-profile-page-phone').value.trim(),
+            gradYear:  document.getElementById('my-profile-page-grad_year').value.trim(),
+            contact:   document.getElementById('my-profile-page-contact').value.trim(),
+            interests: hiddenInput.value
         };
 
-        // Send POST request to save data
-        fetch('/profile', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(profileData)
-        }).then(response => {
-            if (response.ok) {
+        saveProfileData(payload)
+            .then(() => {
                 alert('Profile saved successfully!');
-            } else {
+                // ← new: update sidebar immediately
+                updateProfileSummary(payload);
+            })
+            .catch(err => {
+                console.error('Error saving profile:', err);
                 alert('Failed to save profile.');
-            }
-        }).catch(error => {
-            console.error('Error saving profile:', error);
-        });
+            });
     });
 
-    // Initialize
-    updateSelectedTags();
+    // logout (unchanged)
+    const logoutBtn = document.getElementById('logout-button');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            if (confirm("Are you sure you want to log out?")) {
+                localStorage.removeItem('token');
+                fetch('/api/logout', { method:'POST', credentials:'include' })
+                    .finally(() => window.location.href = '/login.html');
+            }
+        });
+    }
+
+    // init empty tags state
+    renderTags();
 }
