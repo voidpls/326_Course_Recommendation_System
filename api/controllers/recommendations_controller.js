@@ -62,7 +62,7 @@ async function queryLLM(prompt) {
         },
       };
     
-    const model = 'gemini-2.5-flash-preview-04-17';
+    const model = 'gemini-2.5-flash';
     const contents = prompt //+ '\n\n' + createPartFromUri(myfile.uri, myfile.mimeType);
     const response = await ai.models.generateContent({model, config, contents})
     
